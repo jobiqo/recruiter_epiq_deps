@@ -1,5 +1,5 @@
 # recruiter_epiq_deps
-Npm dependencies for the epiq theme
+Npm dependencies for the epiq theme [![Build Status][ci-img]][ci]
 
 [ci-img]:  https://travis-ci.org/epiqo/recruiter_epiq_deps.svg
 [ci]:      https://travis-ci.org/epiqo/recruiter_epiq_deps
