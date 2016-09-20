@@ -1,6 +1,6 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dependencies for the epiq theme in Recruiter distro",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,6 @@
     "gulp-replace-path": "^0.4.0",
     "gulp-rimraf": "~0.2.0",
     "gulp-sass": "^2.3.1",
-    "gulp-shell": "^0.5.2",
     "gulp-uglify": "~1.5.3",
     "gulp-util": "~3.0.7",
     "kss": "~2.0.2",
@@ -53,6 +52,8 @@
     "path": "node_modules/cz-conventional-changelog"
   },
   "bundledDependencies": [
+    "es6-promise",
+    "gulp-shell",
     "coffee-script",
     "coffeelint",
     "criticalcss",
@@ -69,7 +70,6 @@
     "gulp-replace-path",
     "gulp-rimraf",
     "gulp-sass",
-    "gulp-shell",
     "gulp-uglify",
     "gulp-util",
     "kss",
