@@ -116,13 +116,15 @@ gulp.task 'full-build', [
 gulp.task 'minify-css', ->
   cssmin = require('gulp-cssmin')
   rename = require('gulp-rename')
-  gulp.src('dist/css/*.css').pipe(cssmin()).pipe(rename(
-    suffix: '.min')).pipe gulp.dest('dist/css/min')
+  gulp.src('../../dist/css/*.css').pipe(cssmin()).pipe(rename(
+    suffix: '.min')).pipe gulp.dest('../../dist/css/min')
   return
 
 gulp.task 'critical-front', (cb) ->
   # URLs for criticalCSS
-  gulpconfig = require("./gulpconfig.json");
+  util = require ('gulp-util')
+
+  gulpconfig = require(util.env.gulpconfig);
   urls =
     site: gulpconfig.urls.site
     css: gulpconfig.urls.css
@@ -131,7 +133,6 @@ gulp.task 'critical-front', (cb) ->
   front_force_selectors = gulpconfig.front.force_include
 
   request = require('request')
-  util = require ('gulp-util')
   replace = require('gulp-replace-path')
   path = require('path')
   criticalcss = require('criticalcss')
@@ -140,7 +141,7 @@ gulp.task 'critical-front', (cb) ->
   siteUrl = if util.env.site then util.env.site else urls.site
   cssUrl = if util.env.csspath then util.env.csspath else (siteUrl + urls.css)
   cssPath = path.join(tmpDir, 'style.css')
-  includePath = path.join(__dirname, 'dist/css/critical-front.css')
+  includePath = path.join(__dirname, '../../dist/css/critical-front.css')
   request(cssUrl).pipe(fs.createWriteStream(cssPath)).on 'close', ->
     criticalcss.getRules cssPath, {buffer: 2000 * 1024}, (err, output) ->
       if err
@@ -158,14 +159,16 @@ gulp.task 'critical-front', (cb) ->
             fs.writeFile includePath, output, (err) ->
               gulp.src([includePath])
               .pipe(replace('../images', urls.theme_folder + "dist/images"))
-              .pipe gulp.dest('dist/css')
+              .pipe gulp.dest('../../dist/css')
             return
         return
     return
 
 gulp.task 'critical', ->
   # URLs for criticalCSS
-  gulpconfig = require("./gulpconfig.json");
+  util = require ('gulp-util')
+
+  gulpconfig = require(util.env.gulpconfig);
   urls =
     site: gulpconfig.urls.site
     css: gulpconfig.urls.css
@@ -174,7 +177,6 @@ gulp.task 'critical', ->
   front_force_selectors = gulpconfig.front.force_include
 
   request = require('request')
-  util = require ('gulp-util')
   path = require('path')
   criticalcss = require('criticalcss')
   fs = require('fs')
@@ -182,7 +184,7 @@ gulp.task 'critical', ->
   siteUrl = if util.env.site then util.env.site else urls.site
   cssUrl = if util.env.csspath then util.env.csspath else (siteUrl + urls.css)
   cssPath = path.join(tmpDir, 'style.css')
-  includePath = path.join(__dirname, 'dist/css/critical.css')
+  includePath = path.join(__dirname, '../../dist/css/critical.css')
   request(cssUrl).pipe(fs.createWriteStream(cssPath)).on 'close', ->
     criticalcss.getRules cssPath, {buffer: 2000 * 1024}, (err, output) ->
       if err

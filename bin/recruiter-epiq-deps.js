@@ -7,6 +7,7 @@ switch (script) {
 case 'build':
 case 'images':
 case 'styleguide':
+case 'critical':
   var result = spawn.sync(
     'node',
     [require.resolve('../scripts/' + script)].concat(args),
