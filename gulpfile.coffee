@@ -20,19 +20,10 @@ paths =
   images: ['../../src/images/**/*']
   docs: 'docs'
   styleguide:
-    docs: 'styleguide/docs'
+    docs: '../../styleguide/docs'
     sass: epiq_path + '/styleguide/sass/*.scss'
     source: epiq_path + '/styleguide'
     template: epiq_path + '/styleguide/epiq-kss/'
-
-# URLs for criticalCSS
-gulpconfig = require("./gulpconfig.json");
-urls =
-  site : gulpconfig.urls.site
-  css : gulpconfig.urls.css
-  theme_folder: gulpconfig.urls.theme_folder
-jobs_force_selectors = gulpconfig.jobs.force_include
-front_force_selectors = gulpconfig.front.force_include
 
 # Convert .scss to .css (including live reload) using
 # LibSass.
@@ -86,9 +77,9 @@ sass = require('gulp-sass');
 
 gulp.task 'compile-styleguide', ->
   util = require 'gulp-util'
-  gulp.src('styleguide/sass/*.scss')
+  gulp.src('../../styleguide/sass/*.scss')
   .pipe(sass().on('error', sass.logError))
-  .pipe(gulp.dest('styleguide/docs/css'))
+  .pipe(gulp.dest('../../styleguide/docs/css'))
 
 # Generates the styleguide using kss-node.
 gulp.task('styleguide-kss', ['compile-styleguide'], shell.task([
@@ -96,7 +87,7 @@ gulp.task('styleguide-kss', ['compile-styleguide'], shell.task([
   ], {
     templateData: {
       source: paths.styleguide.source,
-      destination: 'styleguide/docs',
+      destination: '../../styleguide/docs',
       template: paths.styleguide.template,
       cssfile: 'css/styles.css'
     }
@@ -125,10 +116,20 @@ gulp.task 'full-build', [
 gulp.task 'minify-css', ->
   cssmin = require('gulp-cssmin')
   rename = require('gulp-rename')
-  gulp.src('dist/css/*.css').pipe(cssmin()).pipe(rename(suffix: '.min')).pipe gulp.dest('dist/css/min')
+  gulp.src('dist/css/*.css').pipe(cssmin()).pipe(rename(
+    suffix: '.min')).pipe gulp.dest('dist/css/min')
   return
 
 gulp.task 'critical-front', (cb) ->
+  # URLs for criticalCSS
+  gulpconfig = require("./gulpconfig.json");
+  urls =
+    site: gulpconfig.urls.site
+    css: gulpconfig.urls.css
+    theme_folder: gulpconfig.urls.theme_folder
+  jobs_force_selectors = gulpconfig.jobs.force_include
+  front_force_selectors = gulpconfig.front.force_include
+
   request = require('request')
   util = require ('gulp-util')
   replace = require('gulp-replace-path')
@@ -141,11 +142,16 @@ gulp.task 'critical-front', (cb) ->
   cssPath = path.join(tmpDir, 'style.css')
   includePath = path.join(__dirname, 'dist/css/critical-front.css')
   request(cssUrl).pipe(fs.createWriteStream(cssPath)).on 'close', ->
-    criticalcss.getRules cssPath,{buffer: 2000*1024}, (err, output) ->
+    criticalcss.getRules cssPath, {buffer: 2000 * 1024}, (err, output) ->
       if err
         throw new Error(err)
       else
-        criticalcss.findCritical (siteUrl), {ignoreConsole: true, rules: JSON.parse(output),buffer: 2000*1024,forceInclude:front_force_selectors}, (err, output) ->
+        criticalcss.findCritical (siteUrl), {
+          ignoreConsole: true,
+          rules: JSON.parse(output),
+          buffer: 2000 * 1024,
+          forceInclude: front_force_selectors
+        }, (err, output) ->
           if err
             throw new Error(err)
           else
@@ -158,6 +164,15 @@ gulp.task 'critical-front', (cb) ->
     return
 
 gulp.task 'critical', ->
+  # URLs for criticalCSS
+  gulpconfig = require("./gulpconfig.json");
+  urls =
+    site: gulpconfig.urls.site
+    css: gulpconfig.urls.css
+    theme_folder: gulpconfig.urls.theme_folder
+  jobs_force_selectors = gulpconfig.jobs.force_include
+  front_force_selectors = gulpconfig.front.force_include
+
   request = require('request')
   util = require ('gulp-util')
   path = require('path')
@@ -169,11 +184,16 @@ gulp.task 'critical', ->
   cssPath = path.join(tmpDir, 'style.css')
   includePath = path.join(__dirname, 'dist/css/critical.css')
   request(cssUrl).pipe(fs.createWriteStream(cssPath)).on 'close', ->
-    criticalcss.getRules cssPath,{buffer: 2000*1024}, (err, output) ->
+    criticalcss.getRules cssPath, {buffer: 2000 * 1024}, (err, output) ->
       if err
         throw new Error(err)
       else
-        criticalcss.findCritical (if util.env.site then util.env.site + "/jobs" else siteUrl + "/jobs"), {ignoreConsole: true, rules: JSON.parse(output),buffer: 2000*1024,forceInclude:jobs_force_selectors}, (err, output) ->
+        criticalcss.findCritical (if util.env.site then util.env.site + "/jobs" else siteUrl + "/jobs"), {
+          ignoreConsole: true,
+          rules: JSON.parse(output),
+          buffer: 2000 * 1024,
+          forceInclude: jobs_force_selectors
+        }, (err, output) ->
           if err
             throw new Error(err)
           else

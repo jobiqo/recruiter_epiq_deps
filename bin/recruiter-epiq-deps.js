@@ -5,6 +5,8 @@ var args = process.argv.slice(3);
 
 switch (script) {
 case 'build':
+case 'images':
+case 'styleguide':
   var result = spawn.sync(
     'node',
     [require.resolve('../scripts/' + script)].concat(args),
