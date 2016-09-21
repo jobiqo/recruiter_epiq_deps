@@ -1,11 +1,13 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "1.0.4",
+  "version": "0.0.9",
   "description": "Dependencies for the epiq theme in Recruiter distro",
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
-    "prepublish": "bundle-deps"
+    "prepublish": "bundle-deps",
+    "build": "node scripts/build.js",
+    "images": "node scripts/images.js"
   },
   "repository": {
     "type": "git",
