@@ -13,3 +13,7 @@ subtitle = "Changelog"
 #
 # Defaults to stdout when omitted
 changelog = "CHANGELOG.md"
+
+# If you use tags, you can set the following if you wish to only pick
+# up changes since your latest tag
+from-latest-tag = true
