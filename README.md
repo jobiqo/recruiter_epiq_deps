@@ -1,7 +1,7 @@
 # recruiter_epiq_deps [![Build Status][ci-img]][ci]
 Npm dependencies for the epiq theme 
 
-## How it works.
+## How it works
 
 To use the recruiter epiq dependencies npm package simply register it as a dependency in your package.json (inside your hteme).
 
