@@ -1,4 +1,14 @@
 <a name=""></a>
+##  Changelog (2016-09-22)
+
+
+#### Bug Fixes
+
+* **styleguide:**  fix styleguide vars ([3539f0e8](https://github.com/epiqo/recruiter_epiq_deps/commit/3539f0e8e354c61ac64478a896c02b333fb49562))
+
+
+
+<a name=""></a>
 ##  Changelog (2016-09-21)
 
 
