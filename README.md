@@ -7,7 +7,7 @@ To use the recruiter epiq dependencies npm package simply register it as a depen
 
 ```
 "devDependencies": {
-    "recruiter_epiq_deps": "^0.0.14"
+    "recruiter_epiq_deps": "^0.1.0"
   },
 ```
 
