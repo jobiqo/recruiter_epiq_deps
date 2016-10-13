@@ -1,4 +1,18 @@
 <a name=""></a>
+##  Changelog (2016-10-13)
+
+
+#### Bug Fixes
+
+* **styleguide:**  fix styleguide vars ([3539f0e8](https://github.com/epiqo/recruiter_epiq_deps/commit/3539f0e8e354c61ac64478a896c02b333fb49562))
+
+#### Features
+
+* **output:**  Add colors to output messages ([5467439f](https://github.com/epiqo/recruiter_epiq_deps/commit/5467439fa4d35ed4dd6c7cdf119d38dcd177d203))
+
+
+
+<a name=""></a>
 ##  Changelog (2016-09-22)
 
 
