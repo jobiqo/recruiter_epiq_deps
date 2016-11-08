@@ -1,18 +1,24 @@
-var exec = require('child_process').exec,
-  chalk = require('chalk'),
-  epiq_dir = '../../../../../../profiles/recruiter/themes/epiq';
+var spawn = require('child_process').spawn,
+  chalk = require('chalk');
 
-var cmd = 'cd node_modules/recruiter_epiq_deps && gulp watch --epiq_dir ' + epiq_dir;
+var options = {cwd: 'node_modules/recruiter_epiq_deps'};
 
 console.log('Running watch script - ' + chalk.yellow('gulp watch'));
-exec(cmd, function (error, stdout, stderr) {
-  // command output is in stdout
-  if (!error) {
-    console.log(chalk.green(stdout));
-  }
-  else {
-    console.log(chalk.white(stdout));
-    console.log(chalk.red(error));
-  }
-  console.log(chalk.red(stderr));
+
+var watch = spawn('gulp', options, ['watch']);
+
+watch.stdout.on('data', function (data) {
+  console.log(chalk.green(data));
+});
+
+watch.stderr.on('data', function (data) {
+  console.log(chalk.red(data));
+});
+
+watch.on('close', function (data) {
+  console.log(chalk.white(data));
+});
+
+watch.on('error', function (err) {
+  console.log(chalk.red(err));
 });

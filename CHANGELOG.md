@@ -1,4 +1,19 @@
 <a name=""></a>
+##  Changelog (2016-11-08)
+
+
+#### Features
+
+* **build:**  Added watch task ([f2cfd73b](https://github.com/epiqo/recruiter_epiq_deps/commit/f2cfd73baa30112c4cf2866a5d6da4fc14423306))
+* **output:**  Add colors to output messages ([5467439f](https://github.com/epiqo/recruiter_epiq_deps/commit/5467439fa4d35ed4dd6c7cdf119d38dcd177d203))
+
+#### Bug Fixes
+
+* **styleguide:**  fix styleguide vars ([3539f0e8](https://github.com/epiqo/recruiter_epiq_deps/commit/3539f0e8e354c61ac64478a896c02b333fb49562))
+
+
+
+<a name=""></a>
 ##  Changelog (2016-10-13)
 
 
