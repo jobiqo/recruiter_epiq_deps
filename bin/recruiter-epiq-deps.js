@@ -5,6 +5,7 @@ var args = process.argv.slice(3);
 
 switch (script) {
 case 'build':
+case 'watch':
 case 'images':
 case 'styleguide':
 case 'critical':
