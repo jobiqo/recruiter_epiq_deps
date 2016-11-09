@@ -9,7 +9,8 @@
     "build": "node scripts/build.js",
     "images": "node scripts/images.js",
     "critial": "node scripts/critial.js",
-    "styleguide": "node scripts/styleguide.js"
+    "styleguide": "node scripts/styleguide.js",
+    "test": "echo No Tests"
   },
   "repository": {
     "type": "git",
