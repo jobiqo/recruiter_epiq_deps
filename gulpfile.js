@@ -94,20 +94,16 @@ gulp.task('minify-css', function () {
 gulp.task('critical-front', function (cb) {
   var critical = require('critical'),
     path = require('path'),
-    util = require('gulp-util'),
     gulpconfig = require(util.env.gulpconfig),
     urls = {
-      site: gulpconfig.urls.site,
-      css: gulpconfig.urls.css,
-      css_file: gulpconfig.urls.css_file,
-      theme_folder: gulpconfig.urls.theme_folder
+      site: util.env.site,
+      css_file: gulpconfig.css_file,
     },
-    front_force_selectors = gulpconfig.front.force_include
-    siteUrl = util.env.site ? util.env.site : urls.site,
+    front_force_selectors = gulpconfig.front.force_include,
     includePath = path.join(__dirname, '../../dist/css/min/critical-front.min.css');
   critical.generate({
     base: '../../dist',
-    src: siteUrl,
+    src: urls.site,
     css: '../../dist/css/' + urls.css_file,
     dest: includePath,
     minify: true,
@@ -120,20 +116,16 @@ gulp.task('critical-front', function (cb) {
 gulp.task('critical', function (cb) {
   var critical = require('critical'),
     path = require('path'),
-    util = require('gulp-util'),
     gulpconfig = require(util.env.gulpconfig),
     urls = {
-      site: gulpconfig.urls.site + '/jobs',
-      css: gulpconfig.urls.css,
-      css_file: gulpconfig.urls.css_file,
-      theme_folder: gulpconfig.urls.theme_folder,
+      site: util.env.site + '/jobs',
+      css_file: gulpconfig.css_file,
     },
     jobs_force_selectors = gulpconfig.jobs.force_include,
-    siteUrl = util.env.site ? util.env.site : urls.site,
     includePath = path.join(__dirname, '../../dist/css/min/critical.min.css');
   critical.generate({
     base: '../../dist',
-    src: siteUrl,
+    src: urls.site,
     css: '../../dist/css/' + urls.css_file,
     dest: includePath,
     minify: true,
