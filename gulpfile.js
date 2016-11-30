@@ -92,53 +92,6 @@ gulp.task('minify-css', function () {
 });
 
 gulp.task('critical-front', function (cb) {
-  var criticalcss, cssPath, cssUrl, front_force_selectors, fs, gulpconfig, includePath, jobs_force_selectors, path, replace, request, siteUrl, tmpDir, urls;
-  util = require('gulp-util');
-  gulpconfig = require(util.env.gulpconfig);
-  urls = {
-    site: gulpconfig.urls.site,
-    css: gulpconfig.urls.css,
-    theme_folder: gulpconfig.urls.theme_folder
-  };
-  jobs_force_selectors = gulpconfig.jobs.force_include;
-  front_force_selectors = gulpconfig.front.force_include;
-  request = require('request');
-  replace = require('gulp-replace-path');
-  path = require('path');
-  criticalcss = require('criticalcss');
-  fs = require('fs');
-  tmpDir = require('os').tmpdir();
-  siteUrl = util.env.site ? util.env.site : urls.site;
-  cssUrl = util.env.csspath ? util.env.csspath : siteUrl + urls.css;
-  cssPath = path.join(tmpDir, 'style.css');
-  includePath = path.join(__dirname, '../../dist/css/critical-front.css');
-  return request(cssUrl).pipe(fs.createWriteStream(cssPath)).on('close', function () {
-    criticalcss.getRules(cssPath, {
-      buffer: 2000 * 1024
-    }, function (err, output) {
-      if (err) {
-        throw new Error(err);
-      } else {
-        criticalcss.findCritical(siteUrl, {
-          ignoreConsole: true,
-          rules: JSON.parse(output),
-          buffer: 2000 * 1024,
-          forceInclude: front_force_selectors
-        }, function (err, output) {
-          if (err) {
-            throw new Error(err);
-          } else {
-            fs.writeFile(includePath, output, function (err) {
-              return gulp.src([includePath]).pipe(replace('../images', urls.theme_folder + "dist/images")).pipe(gulp.dest('../../dist/css'));
-            });
-          }
-        });
-      }
-    });
-  });
-});
-
-gulp.task('critical-front', function (cb) {
   var critical = require('critical'),
     path = require('path'),
     util = require('gulp-util'),
@@ -149,7 +102,7 @@ gulp.task('critical-front', function (cb) {
       css_file: gulpconfig.urls.css_file,
       theme_folder: gulpconfig.urls.theme_folder
     },
-    front_force_selectors = gulpconfig.front.force_include,
+    front_force_selectors = gulpconfig.front.force_include
     siteUrl = util.env.site ? util.env.site : urls.site,
     includePath = path.join(__dirname, '../../dist/css/min/critical-front.min.css');
   critical.generate({
@@ -160,7 +113,7 @@ gulp.task('critical-front', function (cb) {
     minify: true,
     width: 2000,
     height: 1024,
-    include:jobs_force_selectors,
+    include:front_force_selectors,
   });
 });
 
