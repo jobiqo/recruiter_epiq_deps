@@ -1,6 +1,6 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Dependencies for the epiq theme in Recruiter distro",
   "main": "index.js",
   "scripts": {
@@ -45,13 +45,13 @@
     "gulp-util": "~3.0.7",
     "kss": "~2.0.2",
     "tiny-lr": "~0.2.1",
-    "yargs": "~4.6.0"
+    "yargs": "~4.6.0",
+    "prompt": "^1.0.0"
   },
   "devDependencies": {
     "bundle-deps": "^1.0.0",
     "commitizen": "^2.8.6",
-    "cz-conventional-changelog": "^1.2.0",
-    "prompt": "^1.0.0"
+    "cz-conventional-changelog": "^1.2.0"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
@@ -76,6 +76,7 @@
     "gulp-util",
     "kss",
     "tiny-lr",
-    "yargs"
+    "yargs",
+    "prompt"
   ]
 }
