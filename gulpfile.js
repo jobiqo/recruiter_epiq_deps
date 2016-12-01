@@ -99,6 +99,7 @@ gulp.task('critical-front', function (cb) {
       site: util.env.site,
       css_file: gulpconfig.css_file,
     },
+    generic_force_selectors = gulpconfig.generic.force_include,
     front_force_selectors = gulpconfig.front.force_include,
     includePath = path.join(__dirname, '../../dist/css/min/critical-front.min.css');
   critical.generate({
@@ -109,7 +110,7 @@ gulp.task('critical-front', function (cb) {
     minify: true,
     width: 2000,
     height: 1024,
-    include:front_force_selectors,
+    include:generic_force_selectors.concat(front_force_selectors),
   });
 });
 
@@ -121,6 +122,7 @@ gulp.task('critical', function (cb) {
       site: util.env.site + '/jobs',
       css_file: gulpconfig.css_file,
     },
+    generic_force_selectors = gulpconfig.generic.force_include,
     jobs_force_selectors = gulpconfig.jobs.force_include,
     includePath = path.join(__dirname, '../../dist/css/min/critical.min.css');
   critical.generate({
@@ -131,7 +133,7 @@ gulp.task('critical', function (cb) {
     minify: true,
     width: 2000,
     height: 1024,
-    include: jobs_force_selectors
+    include: generic_force_selectors.concat(jobs_force_selectors),
   });
 });
 
