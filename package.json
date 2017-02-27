@@ -1,6 +1,6 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "2.0.9",
+  "version": "3.0.0",
   "description": "Dependencies for the epiq theme in Recruiter distro",
   "main": "index.js",
   "scripts": {
