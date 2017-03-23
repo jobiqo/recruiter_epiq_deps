@@ -1,11 +1,10 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Dependencies for the epiq theme in Recruiter distro",
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
-    "prepublish": "bundle-deps",
     "build": "node scripts/build.js",
     "images": "node scripts/images.js",
     "critial": "node scripts/critial.js",
@@ -55,28 +54,5 @@
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
-  },
-  "bundledDependencies": [
-    "chalk",
-    "critical",
-    "es6-promise",
-    "gulp",
-    "gulp-autoprefixer",
-    "gulp-changed",
-    "gulp-concat",
-    "gulp-cssmin",
-    "gulp-imagemin",
-    "gulp-livereload",
-    "gulp-rename",
-    "gulp-replace-path",
-    "gulp-rimraf",
-    "gulp-sass",
-    "gulp-shell",
-    "gulp-uglify",
-    "gulp-util",
-    "kss",
-    "tiny-lr",
-    "yargs",
-    "prompt"
-  ]
+  }
 }
