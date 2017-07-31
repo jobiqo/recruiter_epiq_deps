@@ -94,13 +94,14 @@ gulp.task('minify-css', function () {
 gulp.task('critical-front', function (cb) {
   var critical = require('critical'),
     path = require('path'),
+    coreGulpConfig = require(util.env.epiq_dir + '/gulpconfig.json'),
     gulpconfig = require(util.env.gulpconfig),
     urls = {
       site: util.env.site,
       css_file: gulpconfig.css_file,
     },
-    generic_force_selectors = gulpconfig.generic.force_include,
-    front_force_selectors = gulpconfig.front.force_include,
+    generic_force_selectors = coreGulpConfig.generic.force_include.concat(gulpconfig.generic.force_include),
+    front_force_selectors = coreGulpConfig.front.force_include.concat(gulpconfig.front.force_include),
     includePath = path.join(__dirname, '../../dist/css/min/critical-front.min.css');
   critical.generate({
     base: '../../dist',
@@ -117,13 +118,14 @@ gulp.task('critical-front', function (cb) {
 gulp.task('critical', function (cb) {
   var critical = require('critical'),
     path = require('path'),
+    coreGulpConfig = require(util.env.epiq_dir + '/gulpconfig.json'),
     gulpconfig = require(util.env.gulpconfig),
     urls = {
       site: util.env.site + '/jobs',
       css_file: gulpconfig.css_file,
     },
-    generic_force_selectors = gulpconfig.generic.force_include,
-    jobs_force_selectors = gulpconfig.jobs.force_include,
+    generic_force_selectors = coreGulpConfig.generic.force_include.concat(gulpconfig.generic.force_include),
+    jobs_force_selectors = coreGulpConfig.jobs.force_include.concat(gulpconfig.jobs.force_include),
     includePath = path.join(__dirname, '../../dist/css/min/critical.min.css');
   critical.generate({
     base: '../../dist',
