@@ -1,4 +1,29 @@
 <a name=""></a>
+##  Changelog (2017-07-31)
+
+
+#### Bug Fixes
+
+* **critical:**  Improve critical-css with prompt ([272bbf8d](https://github.com/epiqo/recruiter_epiq_deps/commit/272bbf8d3eeb9da04679a397d8255e1160e68052))
+* **critical-css:**  Fix critical-css task ([b8a1468b](https://github.com/epiqo/recruiter_epiq_deps/commit/b8a1468bd92495ccbffbb8082d601a4675fe10bb))
+* **dependencies:**  Remove bundled dependencies ([e27dd29c](https://github.com/epiqo/recruiter_epiq_deps/commit/e27dd29c1eedd45c8b6295f399ff82e6412a907e))
+* **gulpfile:**  fix include selectors property ([a33e746b](https://github.com/epiqo/recruiter_epiq_deps/commit/a33e746b21f7e9ee871f684c6d72a2e8bd06f1bf))
+* **package:**  Use yarn to install dependencies ([6181c1a5](https://github.com/epiqo/recruiter_epiq_deps/commit/6181c1a5bf85cc6cbf4a1c0913a7221e6ffde9a3))
+* **styleguide:**  fix styleguide vars ([3539f0e8](https://github.com/epiqo/recruiter_epiq_deps/commit/3539f0e8e354c61ac64478a896c02b333fb49562))
+* **test:**  add test dummy script for travis ([9cd0fcfe](https://github.com/epiqo/recruiter_epiq_deps/commit/9cd0fcfedc4691940156faa81155592ec6e6b2e3))
+* **watch:**  Fix watch task ([6a5b8035](https://github.com/epiqo/recruiter_epiq_deps/commit/6a5b80350ff8abd44e3222e51bf8407792ae54df))
+* **yarn:**  remove yarn file from this repo ([8dbbcb6c](https://github.com/epiqo/recruiter_epiq_deps/commit/8dbbcb6cf6603ba7b95b614769416374eb7216d9))
+
+#### Features
+
+* **build:**  Added watch task ([f2cfd73b](https://github.com/epiqo/recruiter_epiq_deps/commit/f2cfd73baa30112c4cf2866a5d6da4fc14423306))
+* **critical-css:**  Change critical css script ([550cd4dd](https://github.com/epiqo/recruiter_epiq_deps/commit/550cd4dd05c2801ec074cab14ee4e607df0bad35))
+* **gulpfile:**  use core force includes on critical css ([f41b26bd](https://github.com/epiqo/recruiter_epiq_deps/commit/f41b26bd24dffe3f1d2826043b989ba9bbdaa253))
+* **output:**  Add colors to output messages ([5467439f](https://github.com/epiqo/recruiter_epiq_deps/commit/5467439fa4d35ed4dd6c7cdf119d38dcd177d203))
+
+
+
+<a name=""></a>
 ##  Changelog (2016-11-30)
 
 
