@@ -103,7 +103,7 @@ gulp.task('critical-front', function (cb) {
     generic_force_selectors = coreGulpConfig.generic.force_include.concat(gulpconfig.generic.force_include),
     front_force_selectors = coreGulpConfig.front.force_include.concat(gulpconfig.front.force_include),
     includePath = path.join(__dirname, '../../dist/css/min/critical-front.min.css');
-  critical.generate({
+  return critical.generate({
     base: '../../dist',
     src: urls.site,
     css: '../../dist/css/' + urls.css_file,
@@ -127,7 +127,7 @@ gulp.task('critical', function (cb) {
     generic_force_selectors = coreGulpConfig.generic.force_include.concat(gulpconfig.generic.force_include),
     jobs_force_selectors = coreGulpConfig.jobs.force_include.concat(gulpconfig.jobs.force_include),
     includePath = path.join(__dirname, '../../dist/css/min/critical.min.css');
-  critical.generate({
+  return critical.generate({
     base: '../../dist',
     src: urls.site,
     css: '../../dist/css/' + urls.css_file,
@@ -151,7 +151,7 @@ gulp.task('critical-job', function (cb) {
     generic_force_selectors = coreGulpConfig.generic.force_include.concat(gulpconfig.generic.force_include),
     jobs_force_selectors = coreGulpConfig.job.force_include.concat(gulpconfig.job.force_include),
     includePath = path.join(__dirname, '../../dist/css/min/critical-job.min.css');
-  critical.generate({
+  return critical.generate({
     base: '../../dist',
     src: urls.site,
     css: '../../dist/css/' + urls.css_file,
@@ -171,7 +171,7 @@ gulp.task('critical-fix-fonts', ['critical', 'critical-front', 'critical-job'], 
     path.join(__dirname, '../../dist/css/min/critical.min.css'),
     path.join(__dirname, '../../dist/css/min/critical-front.min.css'),
     path.join(__dirname, '../../dist/css/min/critical-job.min.css')])
-    .pipe(replace('../../fonts', '/sites/all/themes/' + gulpconfig.theme_directory + '/dist/fonts'))
+    .pipe(replace('../../fonts', '/' + gulpconfig.theme_directory + '/dist/fonts'))
     .pipe(gulp.dest(path.join(__dirname, '../../dist/css/min')));
 });
 
