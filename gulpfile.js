@@ -111,7 +111,7 @@ gulp.task('critical-front', function (cb) {
     minify: true,
     width: 2000,
     height: 1024,
-    include:generic_force_selectors.concat(front_force_selectors),
+    include: generic_force_selectors.concat(front_force_selectors),
   });
 });
 
@@ -139,4 +139,40 @@ gulp.task('critical', function (cb) {
   });
 });
 
-gulp.task('critical-css', ['critical','critical-front']);
+gulp.task('critical-job', function (cb) {
+  var critical = require('critical'),
+    path = require('path'),
+    coreGulpConfig = require(util.env.epiq_dir + '/gulpconfig.json'),
+    gulpconfig = require(util.env.gulpconfig),
+    urls = {
+      site: util.env.site + '/critical-css/job-per-template',
+      css_file: gulpconfig.css_file,
+    },
+    generic_force_selectors = coreGulpConfig.generic.force_include.concat(gulpconfig.generic.force_include),
+    jobs_force_selectors = coreGulpConfig.job.force_include.concat(gulpconfig.job.force_include),
+    includePath = path.join(__dirname, '../../dist/css/min/critical-job.min.css');
+  critical.generate({
+    base: '../../dist',
+    src: urls.site,
+    css: '../../dist/css/' + urls.css_file,
+    dest: includePath,
+    minify: true,
+    width: 2000,
+    height: 1024,
+    include: generic_force_selectors.concat(jobs_force_selectors),
+  });
+});
+
+gulp.task('critical-fix-fonts', ['critical', 'critical-front', 'critical-job'], function (cb) {
+  var replace = require('gulp-replace-path'),
+    path = require('path'),
+    gulpconfig = require(util.env.gulpconfig);
+  return gulp.src([
+    path.join(__dirname, '../../dist/css/min/critical.min.css'),
+    path.join(__dirname, '../../dist/css/min/critical-front.min.css'),
+    path.join(__dirname, '../../dist/css/min/critical-job.min.css')])
+    .pipe(replace('../../fonts', '/sites/all/themes/' + gulpconfig.theme_directory + '/dist/fonts'))
+    .pipe(gulp.dest(path.join(__dirname, '../../dist/css/min')));
+});
+
+gulp.task('critical-css', ['critical-fix-fonts']);
