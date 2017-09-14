@@ -17,7 +17,8 @@ paths = {
     sass: epiq_path + '/styleguide/sass/*.scss',
     source: epiq_path + '/styleguide',
     template: epiq_path + '/styleguide/epiq-kss/'
-  }
+  },
+  svg: [`${epiq_path}/src/icons/*.svg`, '../../src/icons/*.svg'],
 };
 
 gulp.task('sass', ['images'], function () {
@@ -36,6 +37,22 @@ gulp.task('images', function () {
   return stream;
 });
 
+gulp.task('svg-icons', function () {
+  const svgMin = require('gulp-svgmin');
+  const svgSprite = require('gulp-svg-sprite');
+
+  return gulp.src(paths.svg)
+    .pipe(svgMin())
+    .pipe(svgSprite({
+      mode: {
+        defs: {
+          sprite: "icons.svg"
+        }
+      }
+    }))
+    .pipe(gulp.dest('../../dist/icons'));
+});
+
 gulp.task('livereload', function () {
   var livereload;
   livereload = require('gulp-livereload');
@@ -50,7 +67,7 @@ gulp.task('watch', function () {
   return gulp.watch(paths.images, ['images', 'livereload']);
 });
 
-gulp.task('build', ['images', 'sass']);
+gulp.task('build', ['images', 'sass', 'svg-icons']);
 
 shell = require('gulp-shell');
 
