@@ -1,6 +1,6 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "3.2.1",
+  "version": "0.0.0-development",
   "description": "Dependencies for the epiq theme in Recruiter distro",
   "main": "index.js",
   "scripts": {
@@ -9,11 +9,12 @@
     "images": "node scripts/images.js",
     "critial": "node scripts/critial.js",
     "styleguide": "node scripts/styleguide.js",
-    "test": "echo No Tests"
+    "test": "echo No Tests",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/epiqo/recruiter_epiq_deps.git"
+    "url": "https://github.com/epiqo/recruiter_epiq_deps.git"
   },
   "author": "Joao Garin <joao.garin@gmail.com> (https://joaogarin.com/)",
   "license": "ISC",
@@ -51,7 +52,8 @@
   },
   "devDependencies": {
     "commitizen": "^2.8.6",
-    "cz-conventional-changelog": "^1.2.0"
+    "cz-conventional-changelog": "^1.2.0",
+    "semantic-release": "^7.0.2"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
