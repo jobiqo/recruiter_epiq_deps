@@ -55,6 +55,7 @@
     "yargs": "^7.0.2"
   },
   "devDependencies": {
+    "ansi-regex": "^3.0.0",
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
     "semantic-release": "^7.0.2"
