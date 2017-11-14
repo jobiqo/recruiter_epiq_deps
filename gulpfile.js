@@ -29,6 +29,18 @@ gulp.task('sass', ['images'], function () {
   return gulp.src(paths.sass).pipe(sass().on('error', sass.logError)).pipe(prefix()).pipe(gulp.dest('../../dist/css'));
 });
 
+gulp.task('lint-css', function () {
+  const gulpStylelint = require('gulp-stylelint');
+
+  return gulp
+    .src(paths.sass)
+    .pipe(gulpStylelint({
+      reporters: [
+        { formatter: 'string', console: true }
+      ]
+    }));
+});
+
 gulp.task('images', function () {
   var changed, imagemin, stream;
   changed = require('gulp-changed');
