@@ -51,6 +51,7 @@
     "kss": "^2.0.2",
     "npm": "^5.5.1",
     "prompt": "^1.0.0",
+    "stylelint-config-recommended": "^1.0.0",
     "tiny-lr": "^1.0.3",
     "yargs": "^7.0.2"
   },
