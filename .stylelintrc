@@ -4,6 +4,16 @@
   ],
   "extends": "stylelint-config-sass-guidelines",
   "rules": {
-    "unit-whitelist": ["px", "em", "rem", "s", "%"]
+    "unit-whitelist": [
+      "px",
+      "em",
+      "rem",
+      "s",
+      "%"
+    ],
+    "scss/dollar-variable-pattern": {
+      "ignore": "global"
+    },
+    "string-quotes": "double"
   }
 }
