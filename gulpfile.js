@@ -140,6 +140,7 @@ gulp.task('critical-front', function (cb) {
     minify: true,
     width: 2000,
     height: 1024,
+    timeout: 120000,
     include: generic_force_selectors.concat(front_force_selectors),
   });
 });
@@ -164,6 +165,7 @@ gulp.task('critical', function (cb) {
     minify: true,
     width: 2000,
     height: 1024,
+    timeout: 120000,
     include: generic_force_selectors.concat(jobs_force_selectors),
   });
 });
@@ -188,6 +190,7 @@ gulp.task('critical-job', function (cb) {
     minify: true,
     width: 2000,
     height: 1024,
+    timeout: 120000,
     include: generic_force_selectors.concat(jobs_force_selectors),
   });
 });
