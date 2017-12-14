@@ -5,8 +5,6 @@ gulpconfig = '../../gulpconfig.json',
 args = "",
 yargs = require('yargs').argv;
 
-console.log(yargs);
-
 if (yargs.site) {
 args = '--site ' + yargs.site;
 
