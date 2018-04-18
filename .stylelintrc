@@ -18,6 +18,7 @@
     },
     "string-quotes": "double",
     "selector-max-id": 2,
-    "max-nesting-depth": 4
+    "max-nesting-depth": 4,
+    "selector-max-compound-selectors": 3
   }
 }
