@@ -48,7 +48,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "install": "^0.10.1",
-    "kss": "^2.0.2",
+    "kss": "^3.0.0-beta.20",
     "prompt": "^1.0.0",
     "stylelint": "^8.2.0",
     "stylelint-config-recommended": "^1.0.0",
