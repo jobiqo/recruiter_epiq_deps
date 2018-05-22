@@ -21,7 +21,15 @@ paths = {
   svg: [`${epiq_path}/src/icons/*.svg`, '../../src/icons/*.svg'],
 };
 
-gulp.task('sass', ['images'], function () {
+gulp.task('images', function () {
+  var changed, imagemin, stream;
+  changed = require('gulp-changed');
+  imagemin = require('gulp-imagemin');
+  stream = gulp.src(paths.images).pipe(changed('../../dist/images')).pipe(imagemin()).pipe(gulp.dest('../../dist/images'));
+  return stream;
+});
+
+gulp.task('sass', gulp.series('images'), function () {
   var prefix, sass;
   sass = require('gulp-sass');
   prefix = require('gulp-autoprefixer');
@@ -39,14 +47,6 @@ gulp.task('lint-css', function () {
         { formatter: 'string', console: true }
       ]
     }));
-});
-
-gulp.task('images', function () {
-  var changed, imagemin, stream;
-  changed = require('gulp-changed');
-  imagemin = require('gulp-imagemin');
-  stream = gulp.src(paths.images).pipe(changed('../../dist/images')).pipe(imagemin()).pipe(gulp.dest('../../dist/images'));
-  return stream;
 });
 
 gulp.task('svg-icons', function () {
@@ -79,7 +79,7 @@ gulp.task('watch', function () {
   return gulp.watch(paths.images, ['images', 'livereload']);
 });
 
-gulp.task('build', ['images', 'sass', 'svg-icons']);
+gulp.task('build', gulp.parallel('images', 'sass', 'svg-icons'));
 
 shell = require('gulp-shell');
 
@@ -90,16 +90,18 @@ gulp.task('compile-styleguide', function () {
   return gulp.src('../../styleguide/sass/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('../../styleguide/docs/css'));
 });
 
-gulp.task('styleguide-kss', ['compile-styleguide'], shell.task(['kss-node <%= source %> <%= destination %> --template <%= template %> --css <%= cssfile %>'], {
-  templateData: {
-    source: paths.styleguide.source,
-    destination: '../../styleguide/docs',
-    template: paths.styleguide.template,
-    cssfile: 'css/styles.css'
-  }
-}));
+gulp.task('styleguide-kss',
+  gulp.series('compile-styleguide'),
+  shell.task(['kss-node <%= source %> <%= destination %> --template <%= template %> --css <%= cssfile %>'], {
+    templateData: {
+      source: paths.styleguide.source,
+      destination: '../../styleguide/docs',
+      template: paths.styleguide.template,
+      cssfile: 'css/styles.css'
+    }
+  }));
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', gulp.parallel('build', 'watch'));
 
 gulp.task('clean', function () {
   var rimraf;
@@ -108,8 +110,6 @@ gulp.task('clean', function () {
     read: false
   }).pipe(rimraf());
 });
-
-gulp.task('full-build', ['build', 'styleguide-kss', 'critical-css']);
 
 gulp.task('minify-css', function () {
   var cssmin, rename;
@@ -195,16 +195,19 @@ gulp.task('critical-job', function (cb) {
   });
 });
 
-gulp.task('critical-fix-fonts', ['critical', 'critical-front', 'critical-job'], function (cb) {
-  var replace = require('gulp-replace-path'),
-    path = require('path'),
-    gulpconfig = require(util.env.gulpconfig);
-  return gulp.src([
-    path.join(__dirname, '../../dist/css/min/critical.min.css'),
-    path.join(__dirname, '../../dist/css/min/critical-front.min.css'),
-    path.join(__dirname, '../../dist/css/min/critical-job.min.css')])
-    .pipe(replace('../../fonts', '/' + gulpconfig.theme_directory + '/dist/fonts'))
-    .pipe(gulp.dest(path.join(__dirname, '../../dist/css/min')));
-});
+gulp.task('critical-fix-fonts',
+  gulp.parallel('critical', 'critical-front', 'critical-job'), function (cb) {
+    var replace = require('gulp-replace-path'),
+      path = require('path'),
+      gulpconfig = require(util.env.gulpconfig);
+    return gulp.src([
+      path.join(__dirname, '../../dist/css/min/critical.min.css'),
+      path.join(__dirname, '../../dist/css/min/critical-front.min.css'),
+      path.join(__dirname, '../../dist/css/min/critical-job.min.css')])
+      .pipe(replace('../../fonts', '/' + gulpconfig.theme_directory + '/dist/fonts'))
+      .pipe(gulp.dest(path.join(__dirname, '../../dist/css/min')));
+  });
 
-gulp.task('critical-css', ['critical-fix-fonts']);
+gulp.task('critical-css', gulp.series('critical-fix-fonts'));
+
+gulp.task('full-build', gulp.series('build', 'styleguide-kss', 'critical-css'));
