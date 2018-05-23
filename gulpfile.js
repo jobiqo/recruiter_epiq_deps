@@ -29,7 +29,7 @@ gulp.task('images', function () {
   return stream;
 });
 
-gulp.task('sass', gulp.series('images'), function () {
+gulp.task('sass', function () {
   var prefix, sass;
   sass = require('gulp-sass');
   prefix = require('gulp-autoprefixer');
@@ -79,7 +79,7 @@ gulp.task('watch', function () {
   return gulp.watch(paths.images, ['images', 'livereload']);
 });
 
-gulp.task('build', gulp.parallel('images', 'sass', 'svg-icons'));
+gulp.task('build', gulp.series('images', 'sass', 'svg-icons'));
 
 shell = require('gulp-shell');
 
