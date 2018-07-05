@@ -11,7 +11,8 @@
     "critial": "node scripts/critial.js --site ",
     "styleguide": "node scripts/styleguide.js",
     "test": "echo No Tests",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "prepare": "patch-package"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "gulp-util": "^3.0.8",
     "install": "^0.10.1",
     "kss": "^3.0.0-beta.20",
+    "patch-package": "^5.1.1",
     "prompt": "^1.0.0",
     "stylelint": "^8.2.0",
     "stylelint-config-recommended": "^1.0.0",
