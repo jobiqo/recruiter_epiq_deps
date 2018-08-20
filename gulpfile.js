@@ -75,8 +75,8 @@ gulp.task('watch', function () {
   var livereload;
   livereload = require('gulp-livereload');
   livereload.listen();
-  gulp.watch(paths.sass, ['sass', 'livereload']);
-  return gulp.watch(paths.images, ['images', 'livereload']);
+  gulp.watch(paths.sass, gulp.series('sass', 'livereload'));
+  return gulp.watch(paths.images, gulp.series('images', 'livereload'));
 });
 
 gulp.task('build', gulp.series('images', 'sass', 'svg-icons'));
