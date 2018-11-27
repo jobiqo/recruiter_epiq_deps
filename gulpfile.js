@@ -197,7 +197,7 @@ gulp.task('critical-job', function (cb) {
 
 gulp.task('critical-fix-fonts',
   gulp.parallel('critical', 'critical-front', 'critical-job'), function (cb) {
-    var replace = require('gulp-replace-path'),
+    var replace = require('gulp-replace'),
       path = require('path'),
       gulpconfig = require(util.env.gulpconfig);
     return gulp.src([
