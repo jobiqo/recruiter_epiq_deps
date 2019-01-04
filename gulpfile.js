@@ -195,7 +195,7 @@ gulp.task('critical-job', function (cb) {
   });
 });
 
-gulp.task('critical-fix-fonts',
+gulp.task('critical-fix-fonts', gulp.series(
   gulp.parallel('critical', 'critical-front', 'critical-job'), function (cb) {
     var replace = require('gulp-replace'),
       path = require('path'),
@@ -206,7 +206,7 @@ gulp.task('critical-fix-fonts',
       path.join(__dirname, '../../dist/css/min/critical-job.min.css')])
       .pipe(replace('../../fonts', '/' + gulpconfig.theme_directory + '/dist/fonts'))
       .pipe(gulp.dest(path.join(__dirname, '../../dist/css/min')));
-  });
+  }));
 
 gulp.task('critical-css', gulp.series('critical-fix-fonts'));
 
