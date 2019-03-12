@@ -16,7 +16,7 @@ paths = {
     docs: "../../styleguide/docs",
     sass: path.resolve(`${epiq_path}/styleguide/sass/*.scss`),
     source: path.resolve(`${epiq_path}/styleguide`),
-    template: path.resolve(`${epiq_path}/styleguide/epiq-kss/`)
+    destination: '../../styleguide/docs',
   },
   svg: [`${epiq_path}/src/icons/*.svg`, "../../src/icons/*.svg"]
 };
