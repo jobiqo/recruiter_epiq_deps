@@ -20,6 +20,7 @@
     "max-nesting-depth": 4,
     "selector-max-compound-selectors": 5,
     "selector-no-qualifying-type": null,
-    "order/properties-alphabetical-order": null
+    "order/properties-alphabetical-order": null,
+    "scss/percent-placeholder-pattern" : null
   }
 }
