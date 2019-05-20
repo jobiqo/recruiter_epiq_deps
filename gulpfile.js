@@ -16,7 +16,7 @@ paths = {
     docs: "../../styleguide/docs",
     sass: path.resolve(`${epiq_path}/styleguide/sass/*.scss`),
     source: path.resolve(`${epiq_path}/styleguide`),
-    destination: '../../styleguide/docs',
+    destination: "../../styleguide/docs"
   },
   svg: [`${epiq_path}/src/icons/*.svg`, "../../src/icons/*.svg"]
 };
@@ -169,7 +169,9 @@ gulp.task("critical-front", function(cb) {
     width: 2000,
     height: 1024,
     timeout: 120000,
-    include: generic_force_selectors.concat(front_force_selectors)
+    include: generic_force_selectors.concat(front_force_selectors),
+    user: util.env.user ? util.env.user : null,
+    pass: util.env.pass ? util.env.pass : null
   });
 });
 
@@ -198,7 +200,9 @@ gulp.task("critical", function(cb) {
     width: 2000,
     height: 1024,
     timeout: 120000,
-    include: generic_force_selectors.concat(jobs_force_selectors)
+    include: generic_force_selectors.concat(jobs_force_selectors),
+    user: util.env.user ? util.env.user : null,
+    pass: util.env.pass ? util.env.pass : null
   });
 });
 
@@ -230,7 +234,9 @@ gulp.task("critical-job", function(cb) {
     width: 2000,
     height: 1024,
     timeout: 120000,
-    include: generic_force_selectors.concat(jobs_force_selectors)
+    include: generic_force_selectors.concat(jobs_force_selectors),
+    user: util.env.user ? util.env.user : null,
+    pass: util.env.pass ? util.env.pass : null
   });
 });
 
