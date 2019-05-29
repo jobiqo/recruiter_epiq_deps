@@ -147,7 +147,7 @@ gulp.task("critical-front", function(cb) {
     coreGulpConfig = require(util.env.epiq_dir + "/gulpconfig.json"),
     gulpconfig = require(util.env.gulpconfig),
     urls = {
-      site: util.env.site,
+      site: gulpconfig.site,
       css_file: gulpconfig.css_file
     },
     generic_force_selectors = coreGulpConfig.generic.force_include.concat(
@@ -181,7 +181,7 @@ gulp.task("critical", function(cb) {
     coreGulpConfig = require(util.env.epiq_dir + "/gulpconfig.json"),
     gulpconfig = require(util.env.gulpconfig),
     urls = {
-      site: util.env.site + "/jobs",
+      site: gulpconfig.site + "/jobs",
       css_file: gulpconfig.css_file
     },
     generic_force_selectors = coreGulpConfig.generic.force_include.concat(
@@ -212,7 +212,7 @@ gulp.task("critical-job", function(cb) {
     coreGulpConfig = require(util.env.epiq_dir + "/gulpconfig.json"),
     gulpconfig = require(util.env.gulpconfig),
     urls = {
-      site: util.env.site + "/critical-css/job-per-template",
+      site: gulpconfig.site + "/critical-css/job-per-template",
       css_file: gulpconfig.css_file
     },
     generic_force_selectors = coreGulpConfig.generic.force_include.concat(
