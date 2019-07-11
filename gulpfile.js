@@ -6,7 +6,7 @@ gulp = require('gulp');
 args = require('yargs').argv;
 isProduction = args.production === false;
 path = require('path');
-epiq_path = process.env.epiq_dir;
+epiq_path = process.env.EPIQ_DIR;
 
 paths = {
 	sass: ['../../src/sass/**/*.scss'],
@@ -37,7 +37,6 @@ gulp.task('sass', function() {
 	var prefix, sass;
 	sass = require('gulp-sass');
 	prefix = require('gulp-autoprefixer');
-	util = require('gulp-util');
 	return gulp
 		.src(paths.sass)
 		.pipe(sass().on('error', sass.logError))
@@ -93,7 +92,6 @@ gulp.task('build', gulp.series('images', 'sass', 'svg-icons'));
 sass = require('gulp-sass');
 
 gulp.task('compile-styleguide', function() {
-	util = require('gulp-util');
 	return gulp
 		.src('../../styleguide/sass/*.scss')
 		.pipe(sass().on('error', sass.logError))
@@ -143,8 +141,8 @@ gulp.task('minify-css', function() {
 gulp.task('critical-front', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
-		coreGulpConfig = require(process.env.epiq_dir + '/gulpconfig.json'),
-		gulpconfig = require(process.env.gulpconfig),
+		coreGulpConfig = require(process.env.EPIQ_DIR + '/gulpconfig.json'),
+		gulpconfig = require(process.env.GULP_CONFIG),
 		urls = {
 			site: gulpconfig.site,
 			css_file: gulpconfig.css_file,
@@ -170,8 +168,8 @@ gulp.task('critical-front', function(cb) {
 gulp.task('critical', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
-		coreGulpConfig = require(process.env.epiq_dir + '/gulpconfig.json'),
-		gulpconfig = require(process.env.gulpconfig),
+		coreGulpConfig = require(process.env.EPIQ_DIR + '/gulpconfig.json'),
+		gulpconfig = require(process.env.GULP_CONFIG),
 		urls = {
 			site: gulpconfig.site + '/jobs',
 			css_file: gulpconfig.css_file,
@@ -197,8 +195,8 @@ gulp.task('critical', function(cb) {
 gulp.task('critical-job', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
-		coreGulpConfig = require(process.env.epiq_dir + '/gulpconfig.json'),
-		gulpconfig = require(process.env.gulpconfig),
+		coreGulpConfig = require(process.env.EPIQ_DIR + '/gulpconfig.json'),
+		gulpconfig = require(process.env.GULP_CONFIG),
 		urls = {
 			site: gulpconfig.site + '/critical-css/job-per-template',
 			css_file: gulpconfig.css_file,
@@ -226,7 +224,7 @@ gulp.task(
 	gulp.series(gulp.parallel('critical', 'critical-front', 'critical-job'), function(cb) {
 		var replace = require('gulp-replace'),
 			path = require('path'),
-			gulpconfig = require(process.env.gulpconfig);
+			gulpconfig = require(process.env.GULP_CONFIG);
 		return gulp
 			.src([
 				path.join(__dirname, '../../dist/css/min/critical.min.css'),
