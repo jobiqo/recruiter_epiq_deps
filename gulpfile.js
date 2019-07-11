@@ -1,5 +1,4 @@
 var args, epiq_path, gulp, path, paths, sass, util;
-
 require('es6-promise').polyfill();
 gulp = require('gulp');
 args = require('yargs').argv;
