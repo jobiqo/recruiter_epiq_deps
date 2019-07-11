@@ -1,11 +1,11 @@
-var args, epiq_path, gulp, path, paths, sass, util;
+var args, epiq_path, gulp, path, paths, sass, gulpConfigDefault;
 require('es6-promise').polyfill();
 gulp = require('gulp');
 args = require('yargs').argv;
 isProduction = args.production === false;
 path = require('path');
 epiq_path = '../../../../../../profiles/recruiter/themes/epiq';
-gulpconfig = '../../gulpconfig.json';
+gulpConfigDefault = '../../gulpconfig.json';
 
 paths = {
 	sass: ['../../src/sass/**/*.scss'],
@@ -141,7 +141,7 @@ gulp.task('critical-front', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
 		coreGulpConfig = require(`${epiq_path}/gulpconfig.json`),
-		gulpconfig = require(`${gulpconfig}`),
+		gulpconfig = require(`${gulpConfigDefault}`),
 		urls = {
 			site: gulpconfig.site,
 			css_file: gulpconfig.css_file,
@@ -168,7 +168,7 @@ gulp.task('critical', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
 		coreGulpConfig = require(`${epiq_path}/gulpconfig.json`),
-		gulpconfig = require(`${gulpconfig}`),
+		gulpconfig = require(`${gulpConfigDefault}`),
 		urls = {
 			site: gulpconfig.site + '/jobs',
 			css_file: gulpconfig.css_file,
@@ -195,7 +195,7 @@ gulp.task('critical-job', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
 		coreGulpConfig = require(`${epiq_path}/gulpconfig.json`),
-		gulpconfig = require(`${gulpconfig}`),
+		gulpconfig = require(`${gulpConfigDefault}`),
 		urls = {
 			site: gulpconfig.site + '/critical-css/job-per-template',
 			css_file: gulpconfig.css_file,
@@ -223,7 +223,7 @@ gulp.task(
 	gulp.series(gulp.parallel('critical', 'critical-front', 'critical-job'), function(cb) {
 		var replace = require('gulp-replace'),
 			path = require('path'),
-			gulpconfig = require(process.env.GULP_CONFIG);
+			gulpconfig = require(`${gulpConfigDefault}`);
 		return gulp
 			.src([
 				path.join(__dirname, '../../dist/css/min/critical.min.css'),
