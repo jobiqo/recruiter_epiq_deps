@@ -1,78 +1,77 @@
 {
-  "name": "recruiter_epiq_deps",
-  "version": "0.0.0-semantic",
-  "description": "Dependencies for the epiq theme in Recruiter distribution",
-  "main": "index.js",
-  "scripts": {
-    "commit": "git-cz",
-    "build": "node scripts/build.js",
-    "stylelint": "node scripts/stylelint.js",
-    "images": "node scripts/images.js",
-    "critical": "node scripts/critical.js --site ",
-    "styleguide": "node scripts/styleguide.js",
-    "test": "echo No Tests",
-    "semantic-release": "semantic-release"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/epiqo/recruiter_epiq_deps.git"
-  },
-  "author": "Joao Garin <joao.garin@gmail.com> (https://joaogarin.com/)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/epiqo/recruiter_epiq_deps/issues"
-  },
-  "bin": {
-    "recruiter-epiq-deps": "./bin/recruiter-epiq-deps.js"
-  },
-  "homepage": "https://github.com/epiqo/recruiter_epiq_deps#readme",
-  "dependencies": {
-    "chalk": "^2.4.2",
-    "critical": "^1.3.4",
-    "es6-promise": "^4.2.8",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-changed": "^2.0.0",
-    "gulp-concat": "~2.6.1",
-    "gulp-cssmin": "^0.2.0",
-    "gulp-imagemin": "^5.0.3",
-    "gulp-rename": "^1.2.2",
-    "gulp-replace": "^1.0.0",
-    "gulp-rimraf": "^0.2.1",
-    "gulp-sass": "^4.0.1",
-    "gulp-stylelint": "^8.0.0",
-    "gulp-svg-sprite": "^1.3.7",
-    "gulp-svgmin": "^2.2.0",
-    "gulp-uglify": "^3.0.2",
-    "gulp-util": "^3.0.8",
-    "install": "^0.10.1",
-    "kss": "^3.0.0-beta.20",
-    "path": "^0.12.7",
-    "stylelint": "^9.10.1",
-    "stylelint-config-recommended": "^1.0.0",
-    "stylelint-config-sass-guidelines": "^5.4.0",
-    "stylelint-scss": "^2.1.0",
-    "stylelint-selector-bem-pattern": "^2.1.0",
-    "tiny-lr": "^1.0.3",
-    "yargs": "^7.0.2"
-  },
-  "devDependencies": {
-    "ansi-regex": "^3.0.0",
-    "commitizen": "^3.1.1",
-    "cz-conventional-changelog": "^2.1.0",
-    "semantic-release": "^15.13.18"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "engines": {
-    "node": ">=6.10",
-    "npm": ">=5.4.0"
-  },
-  "release": {
-    "debug": false,
-    "branch": "master"
-  }
+	"name": "recruiter_epiq_deps",
+	"version": "0.0.0-semantic",
+	"description": "Dependencies for the epiq theme in Recruiter distribution",
+	"main": "index.js",
+	"scripts": {
+		"commit": "git-cz",
+		"build": "node scripts/build.js",
+		"stylelint": "node scripts/stylelint.js",
+		"images": "node scripts/images.js",
+		"critical": "node scripts/critical.js --site ",
+		"styleguide": "node scripts/styleguide.js",
+		"test": "echo No Tests",
+		"semantic-release": "semantic-release"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/epiqo/recruiter_epiq_deps.git"
+	},
+	"author": "Joao Garin <joao.garin@gmail.com> (https://joaogarin.com/)",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/epiqo/recruiter_epiq_deps/issues"
+	},
+	"bin": {
+		"recruiter-epiq-deps": "./bin/recruiter-epiq-deps.js"
+	},
+	"homepage": "https://github.com/epiqo/recruiter_epiq_deps#readme",
+	"dependencies": {
+		"chalk": "^2.4.2",
+		"critical": "^1.3.4",
+		"es6-promise": "^4.2.8",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^6.1.0",
+		"gulp-changed": "^4.0.0",
+		"gulp-concat": "~2.6.1",
+		"gulp-imagemin": "^5.0.3",
+		"gulp-rename": "^1.2.2",
+		"gulp-replace": "^1.0.0",
+		"gulp-rimraf": "^0.2.1",
+		"gulp-sass": "^4.0.1",
+		"gulp-stylelint": "^8.0.0",
+		"gulp-svg-sprite": "^1.3.7",
+		"gulp-svgmin": "^2.2.0",
+		"gulp-uglify": "^3.0.2",
+		"install": "^0.10.1",
+		"kss": "^3.0.0-beta.20",
+		"path": "^0.12.7",
+		"stylelint": "^9.10.1",
+		"stylelint-config-recommended": "^1.0.0",
+		"stylelint-config-sass-guidelines": "^5.4.0",
+		"stylelint-scss": "^2.1.0",
+		"stylelint-selector-bem-pattern": "^2.1.0",
+		"tiny-lr": "^1.0.3",
+		"yargs": "^7.0.2"
+	},
+	"devDependencies": {
+		"ansi-regex": "^3.0.0",
+		"commitizen": "^3.1.1",
+		"cz-conventional-changelog": "^2.1.0",
+		"gulp-clean-css": "^4.2.0",
+		"semantic-release": "^15.13.18"
+	},
+	"config": {
+		"commitizen": {
+			"path": "cz-conventional-changelog"
+		}
+	},
+	"engines": {
+		"node": ">=6.10",
+		"npm": ">=5.4.0"
+	},
+	"release": {
+		"debug": false,
+		"branch": "master"
+	}
 }
