@@ -1,12 +1,12 @@
 var args, epiq_path, gulp, path, paths, sass, util;
 
 require('es6-promise').polyfill();
+require('dotenv').config();
 gulp = require('gulp');
 args = require('yargs').argv;
 isProduction = args.production === false;
-util = require('gulp-util');
 path = require('path');
-epiq_path = util.env.epiq_dir;
+epiq_path = process.env.epiq_dir;
 
 paths = {
 	sass: ['../../src/sass/**/*.scss'],
@@ -143,8 +143,8 @@ gulp.task('minify-css', function() {
 gulp.task('critical-front', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
-		coreGulpConfig = require(util.env.epiq_dir + '/gulpconfig.json'),
-		gulpconfig = require(util.env.gulpconfig),
+		coreGulpConfig = require(process.env.epiq_dir + '/gulpconfig.json'),
+		gulpconfig = require(process.env.gulpconfig),
 		urls = {
 			site: gulpconfig.site,
 			css_file: gulpconfig.css_file,
@@ -162,16 +162,16 @@ gulp.task('critical-front', function(cb) {
 		height: 1024,
 		timeout: 120000,
 		include: generic_force_selectors.concat(front_force_selectors),
-		user: util.env.user ? util.env.user : null,
-		pass: util.env.pass ? util.env.pass : null,
+		user: process.env.user ? process.env.user : null,
+		pass: process.env.pass ? process.env.pass : null,
 	});
 });
 
 gulp.task('critical', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
-		coreGulpConfig = require(util.env.epiq_dir + '/gulpconfig.json'),
-		gulpconfig = require(util.env.gulpconfig),
+		coreGulpConfig = require(process.env.epiq_dir + '/gulpconfig.json'),
+		gulpconfig = require(process.env.gulpconfig),
 		urls = {
 			site: gulpconfig.site + '/jobs',
 			css_file: gulpconfig.css_file,
@@ -189,16 +189,16 @@ gulp.task('critical', function(cb) {
 		height: 1024,
 		timeout: 120000,
 		include: generic_force_selectors.concat(jobs_force_selectors),
-		user: util.env.user ? util.env.user : null,
-		pass: util.env.pass ? util.env.pass : null,
+		user: process.env.user ? process.env.user : null,
+		pass: process.env.pass ? process.env.pass : null,
 	});
 });
 
 gulp.task('critical-job', function(cb) {
 	var critical = require('critical'),
 		path = require('path'),
-		coreGulpConfig = require(util.env.epiq_dir + '/gulpconfig.json'),
-		gulpconfig = require(util.env.gulpconfig),
+		coreGulpConfig = require(process.env.epiq_dir + '/gulpconfig.json'),
+		gulpconfig = require(process.env.gulpconfig),
 		urls = {
 			site: gulpconfig.site + '/critical-css/job-per-template',
 			css_file: gulpconfig.css_file,
@@ -216,8 +216,8 @@ gulp.task('critical-job', function(cb) {
 		height: 1024,
 		timeout: 120000,
 		include: generic_force_selectors.concat(jobs_force_selectors),
-		user: util.env.user ? util.env.user : null,
-		pass: util.env.pass ? util.env.pass : null,
+		user: process.env.user ? process.env.user : null,
+		pass: process.env.pass ? process.env.pass : null,
 	});
 });
 
@@ -226,7 +226,7 @@ gulp.task(
 	gulp.series(gulp.parallel('critical', 'critical-front', 'critical-job'), function(cb) {
 		var replace = require('gulp-replace'),
 			path = require('path'),
-			gulpconfig = require(util.env.gulpconfig);
+			gulpconfig = require(process.env.gulpconfig);
 		return gulp
 			.src([
 				path.join(__dirname, '../../dist/css/min/critical.min.css'),
