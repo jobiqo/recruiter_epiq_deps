@@ -1,0 +1,18 @@
+{
+	"vsicons.presets.angular": false,
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#13bc97",
+		"activityBar.foreground": "#15202b",
+		"activityBar.inactiveForeground": "#15202b99",
+		"activityBarBadge.background": "#a314cb",
+		"activityBarBadge.foreground": "#e7e7e7",
+		"titleBar.activeBackground": "#0e8e72",
+		"titleBar.inactiveBackground": "#0e8e7299",
+		"titleBar.activeForeground": "#e7e7e7",
+		"titleBar.inactiveForeground": "#e7e7e799",
+		"statusBar.background": "#0e8e72",
+		"statusBarItem.hoverBackground": "#13bc97",
+		"statusBar.foreground": "#e7e7e7"
+	},
+	"peacock.color": "#0E8E72"
+}
