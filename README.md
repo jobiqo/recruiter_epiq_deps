@@ -1,5 +1,6 @@
 # recruiter_epiq_deps [![Build Status][ci-img]][ci]
-Npm dependencies for the epiq theme 
+
+Npm dependencies for the epiq theme
 
 ## How it works
 
@@ -26,7 +27,7 @@ Each command needs to be run using recruiter-epiq-deps, this will link to the bi
 
 ## Dependencies
 
-This package bundles all the dependencies using bundledDependencies, this make for *npm install* to run faster and insure that there are no side effects when running npm install since dependencies will only be changed when we explicitly update them here.
+This package bundles all the dependencies using bundledDependencies, this make for _npm install_ to run faster and insure that there are no side effects when running npm install since dependencies will only be changed when we explicitly update them here.
 
-[ci-img]:  https://travis-ci.org/epiqo/recruiter_epiq_deps.svg
-[ci]:      https://travis-ci.org/epiqo/recruiter_epiq_deps
+[ci-img]: https://travis-ci.org/jobiqo/recruiter_epiq_deps.svg
+[ci]: https://travis-ci.org/jobiqo/recruiter_epiq_deps
