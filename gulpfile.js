@@ -1,3 +1,7 @@
+/**
+ * Gulp tasks to compile epiq theme and base themes.
+ */
+
 var args, epiq_path, gulp, path, paths, sass, gulpConfigDefault;
 require('es6-promise').polyfill();
 gulp = require('gulp');
