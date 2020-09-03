@@ -28,7 +28,7 @@
 	"homepage": "https://github.com/epiqo/recruiter_epiq_deps#readme",
 	"dependencies": {
 		"chalk": "^2.4.2",
-		"critical": "^1.3.6",
+		"critical": "^1.3.10",
 		"es6-promise": "^4.2.8",
 		"gulp": "^4.0.2",
 		"gulp-autoprefixer": "^6.1.0",
@@ -43,8 +43,9 @@
 		"gulp-svg-sprite": "^1.3.7",
 		"gulp-svgmin": "^2.2.0",
 		"gulp-uglify": "^3.0.2",
-		"install": "^0.10.1",
-		"kss": "^3.0.0-beta.20",
+		"install": "^0.10.4",
+		"kss": "^3.0.1",
+		"npm": "^6.14.8",
 		"path": "^0.12.7",
 		"stylelint": "^9.10.1",
 		"stylelint-config-recommended": "^1.0.0",
@@ -56,7 +57,7 @@
 	},
 	"devDependencies": {
 		"ansi-regex": "^3.0.0",
-		"commitizen": "^4.0.3",
+		"commitizen": "^4.2.1",
 		"cz-conventional-changelog": "^2.1.0",
 		"gulp-clean-css": "^4.2.0",
 		"semantic-release": "^15.13.25"
