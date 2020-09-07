@@ -50,7 +50,7 @@
     "stylelint": "^9.10.1",
     "stylelint-config-recommended": "^1.0.0",
     "stylelint-config-sass-guidelines": "^5.4.0",
-    "stylelint-scss": "^2.1.0",
+    "stylelint-scss": "^3.18.0",
     "stylelint-selector-bem-pattern": "^2.1.0",
     "tiny-lr": "^1.0.3",
     "yargs": "^7.0.2"

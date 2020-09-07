@@ -5,11 +5,12 @@
   ],
   "extends": "stylelint-config-sass-guidelines",
   "rules": {
-    "unit-whitelist": [
+    "unit-allowed-list": [
       "px",
       "em",
       "rem",
       "s",
+      "ms",
       "%"
     ],
     "selector-class-pattern": ".*",
