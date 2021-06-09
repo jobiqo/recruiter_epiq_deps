@@ -103,7 +103,6 @@ gulp.task("compile-styleguide", function () {
 
 gulp.task("kss", function () {
   var kss = require("kss");
-  console.log(paths.styleguide.source);
   return kss({
     source: paths.styleguide.source,
     destination: paths.styleguide.destination,
@@ -171,8 +170,8 @@ gulp.task("critical-front", function (cb) {
     height: 1024,
     //timeout: 120000,
     include: generic_force_selectors.concat(front_force_selectors),
-    user: process.env.user ? process.env.user : undefined,
-    pass: process.env.pass ? process.env.pass : undefined,
+    // user: process.env.user ? process.env.user : null,
+    // pass: process.env.pass ? process.env.pass : null,
   });
 });
 
@@ -202,8 +201,8 @@ gulp.task("critical", function (cb) {
     height: 1024,
     // timeout: 120000,
     include: generic_force_selectors.concat(jobs_force_selectors),
-    user: process.env.user ? process.env.user : undefined,
-    pass: process.env.pass ? process.env.pass : undefined,
+    // user: process.env.user ? process.env.user : null,
+    // pass: process.env.pass ? process.env.pass : null,
   });
 });
 
@@ -236,8 +235,8 @@ gulp.task("critical-job", function (cb) {
     height: 1024,
     // timeout: 120000,
     include: generic_force_selectors.concat(jobs_force_selectors),
-    user: process.env.user ? process.env.user : undefined,
-    pass: process.env.pass ? process.env.pass : undefined,
+    // user: process.env.user ? process.env.user : null,
+    // pass: process.env.pass ? process.env.pass : null,
   });
 });
 
