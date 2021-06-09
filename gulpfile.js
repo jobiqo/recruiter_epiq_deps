@@ -171,13 +171,12 @@ gulp.task("critical-front", function (cb) {
     height: 1024,
     //timeout: 120000,
     include: generic_force_selectors.concat(front_force_selectors),
-    // user: process.env.user ? process.env.user : null,
-    // pass: process.env.pass ? process.env.pass : null,
+    user: process.env.user ? process.env.user : undefined,
+    pass: process.env.pass ? process.env.pass : undefined,
   });
 });
 
 gulp.task("critical", function (cb) {
-  console.log(process.env.user);
   var critical = require("critical"),
     path = require("path"),
     coreGulpConfig = require(`${epiq_path}/gulpconfig.json`),
@@ -203,8 +202,8 @@ gulp.task("critical", function (cb) {
     height: 1024,
     // timeout: 120000,
     include: generic_force_selectors.concat(jobs_force_selectors),
-    // user: process.env.user ? process.env.user : null,
-    // pass: process.env.pass ? process.env.pass : null,
+    user: process.env.user ? process.env.user : undefined,
+    pass: process.env.pass ? process.env.pass : undefined,
   });
 });
 
@@ -237,8 +236,8 @@ gulp.task("critical-job", function (cb) {
     height: 1024,
     // timeout: 120000,
     include: generic_force_selectors.concat(jobs_force_selectors),
-    // user: process.env.user ? process.env.user : null,
-    // pass: process.env.pass ? process.env.pass : null,
+    user: process.env.user ? process.env.user : undefined,
+    pass: process.env.pass ? process.env.pass : undefined,
   });
 });
 

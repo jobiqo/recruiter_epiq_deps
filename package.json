@@ -52,8 +52,7 @@
     "stylelint-config-sass-guidelines": "^7.1.0",
     "stylelint-scss": "^3.18.0",
     "stylelint-selector-bem-pattern": "^2.1.0",
-    "tiny-lr": "^1.0.3",
-    "yargs": "^7.0.2"
+    "tiny-lr": "^1.0.3"
   },
   "devDependencies": {
     "ansi-regex": "^3.0.0",
