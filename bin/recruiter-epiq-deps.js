@@ -10,6 +10,7 @@ case 'watch':
 case 'images':
 case 'styleguide':
 case 'critical':
+case 'livereload':
   var result = spawn.sync(
     'node',
     [require.resolve('../scripts/' + script)].concat(args),
