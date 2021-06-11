@@ -14,6 +14,7 @@ gulpConfigDefault = "../../gulpconfig.json";
 paths = {
   sass: ["../../src/sass/**/*.scss"],
   images: ["../../src/images/**/*"],
+  livereload: ["../../dist/*"],
   docs: "docs",
   styleguide: {
     docs: "../../styleguide/docs",
@@ -79,15 +80,15 @@ gulp.task("svg-icons", function () {
 gulp.task("livereload", function () {
   var livereload;
   livereload = require("gulp-livereload");
-  livereload.changed();
+  livereload.listen();
+  gulp.watch(paths.livereload).on('all', function(event, path, stats) {
+    livereload.changed(path);
+  });
 });
 
 gulp.task("watch", function () {
-  var livereload;
-  livereload = require("gulp-livereload");
-  livereload.listen();
-  gulp.watch(paths.sass, gulp.series("sass", "livereload"));
-  return gulp.watch(paths.images, gulp.series("images", "livereload"));
+  gulp.watch(paths.sass, gulp.series("sass"));
+  return gulp.watch(paths.images, gulp.series("images"));
 });
 
 gulp.task("build", gulp.series("images", "sass", "svg-icons"));

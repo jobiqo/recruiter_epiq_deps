@@ -5,7 +5,7 @@ var options = {cwd: 'node_modules/recruiter_epiq_deps'};
 
 console.log('Running watch script - ' + chalk.yellow('gulp watch'));
 
-var watch = spawn('gulp', options, ['watch']);
+var watch = spawn('gulp', ['watch'], options);
 
 watch.stdout.on('data', function (data) {
   console.log(chalk.green(data));
