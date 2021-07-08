@@ -14,7 +14,7 @@ gulpConfigDefault = "../../gulpconfig.json";
 paths = {
   sass: ["../../src/sass/**/*.scss"],
   images: ["../../src/images/**/*"],
-  livereload: ["../../dist/*"],
+  livereload: ["../../dist/**/*"],
   docs: "docs",
   styleguide: {
     docs: "../../styleguide/docs",
