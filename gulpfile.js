@@ -39,7 +39,7 @@ gulp.task("images", function () {
 
 gulp.task("sass", function () {
   var prefix, sass;
-  sass = require("gulp-sass");
+  sass = require("gulp-sass")(require("sass"));
   prefix = require("gulp-autoprefixer");
   return gulp
     .src(paths.sass)
@@ -93,7 +93,7 @@ gulp.task("watch", function () {
 
 gulp.task("build", gulp.series("images", "sass", "svg-icons"));
 
-sass = require("gulp-sass");
+sass = require("gulp-sass")(require("sass"));
 
 gulp.task("compile-styleguide", function () {
   return gulp
