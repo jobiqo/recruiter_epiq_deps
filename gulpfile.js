@@ -39,7 +39,7 @@ gulp.task("images", function () {
 
 gulp.task("sass", function () {
   var prefix, sass;
-  sass = require('gulp-sass')(require('sass'));
+  sass = require("gulp-sass");
   prefix = require("gulp-autoprefixer");
   return gulp
     .src(paths.sass)
@@ -81,7 +81,7 @@ gulp.task("livereload", function () {
   var livereload;
   livereload = require("gulp-livereload");
   livereload.listen();
-  gulp.watch(paths.livereload).on('all', function(event, path, stats) {
+  gulp.watch(paths.livereload).on("all", function (event, path, stats) {
     livereload.changed(path);
   });
 });
@@ -93,7 +93,7 @@ gulp.task("watch", function () {
 
 gulp.task("build", gulp.series("images", "sass", "svg-icons"));
 
-sass = require('gulp-sass')(require('sass'));
+sass = require("gulp-sass");
 
 gulp.task("compile-styleguide", function () {
   return gulp
