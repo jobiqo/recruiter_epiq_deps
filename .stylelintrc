@@ -11,7 +11,9 @@
       "rem",
       "s",
       "ms",
-      "%"
+      "%",
+      "vw",
+      "vh"
     ],
     "selector-class-pattern": ".*",
     "scss/dollar-variable-pattern":".*",
