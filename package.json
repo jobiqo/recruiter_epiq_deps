@@ -1,6 +1,6 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "5.0.19",
+  "version": "5.0.22",
   "description": "Dependencies for the epiq theme in Recruiter distribution",
   "main": "index.js",
   "scripts": {
@@ -26,13 +26,13 @@
   "homepage": "https://github.com/epiqo/recruiter_epiq_deps#readme",
   "dependencies": {
     "chalk": "^2.4.2",
-    "critical": "^4.0.0",
+    "critical": "^4.0.1",
     "es6-promise": "^4.2.8",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-changed": "^4.0.0",
     "gulp-concat": "~2.6.1",
-    "gulp-imagemin": "^7.1.0",
+    "gulp-imagemin": "^7.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^1.0.0",
@@ -42,16 +42,13 @@
     "gulp-svg-sprite": "^1.3.7",
     "gulp-svgmin": "^2.2.0",
     "gulp-uglify": "^3.0.2",
-    "install": "^0.10.4",
     "kss": "^3.0.1",
-    "npm": "^7.16.0",
     "path": "^0.12.7",
     "stylelint": "^13.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-sass-guidelines": "^7.1.0",
     "stylelint-scss": "^3.18.0",
-    "stylelint-selector-bem-pattern": "^2.1.0",
-    "tiny-lr": "^1.0.3"
+    "stylelint-selector-bem-pattern": "^2.1.0"
   },
   "devDependencies": {
     "gulp-clean-css": "^4.2.0"
