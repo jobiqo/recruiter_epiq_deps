@@ -60,7 +60,7 @@
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^2.1.0",
     "gulp-clean-css": "^4.2.0",
-    "semantic-release": "^17.4.0"
+    "semantic-release": "^19.0.3"
   },
   "config": {
     "commitizen": {
