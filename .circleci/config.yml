@@ -25,8 +25,8 @@ jobs:
       - restore_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
       - run:
-        name: "Install Node version"
-        command: |
+          name: "Install Node version"
+          command: |
           source /opt/circleci/.nvm/nvm.sh
           nvm install ${VERSION_NODE}
           # Make nvm available in next steps with desired node version
