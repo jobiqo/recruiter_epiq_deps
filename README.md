@@ -1,4 +1,4 @@
-# recruiter_epiq_deps [![Build Status][ci-img]][ci]
+# recruiter_epiq_deps [![CircleCI](https://dl.circleci.com/status-badge/img/gh/jobiqo/recruiter_epiq_deps/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/jobiqo/recruiter_epiq_deps/tree/master)
 
 Npm dependencies for the epiq theme
 
@@ -8,7 +8,7 @@ To use the recruiter epiq dependencies npm package simply register it as a depen
 
 ```
 "devDependencies": {
-    "recruiter_epiq_deps": "^2.0.0"
+    "recruiter_epiq_deps": "^5.0.0"
   },
 ```
 
@@ -29,5 +29,9 @@ Each command needs to be run using recruiter-epiq-deps, this will link to the bi
 
 This package bundles all the dependencies using bundledDependencies, this make for _npm install_ to run faster and insure that there are no side effects when running npm install since dependencies will only be changed when we explicitly update them here.
 
-[ci-img]: https://travis-ci.org/jobiqo/recruiter_epiq_deps.svg
-[ci]: https://travis-ci.org/jobiqo/recruiter_epiq_deps
+## Publishing a new version
+
+For a new version to be available you have to manually run :
+
+`npm publish ./` and this will publish a new version of the package. Make sure to update package.json with the version you want to publish.
+You might have to first login to npm with `npm login` in order to publish the version. Only authorized users can publish new versions.

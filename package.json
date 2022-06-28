@@ -1,17 +1,15 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "0.0.0-semantic",
+  "version": "5.0.19",
   "description": "Dependencies for the epiq theme in Recruiter distribution",
   "main": "index.js",
   "scripts": {
-    "commit": "git-cz",
     "build": "node scripts/build.js",
     "stylelint": "node scripts/stylelint.js",
     "images": "node scripts/images.js",
     "critical": "node scripts/critical.js --site ",
     "styleguide": "node scripts/styleguide.js",
-    "test": "echo No Tests",
-    "semantic-release": "semantic-release"
+    "test": "echo No Tests"
   },
   "repository": {
     "type": "git",
@@ -56,23 +54,6 @@
     "tiny-lr": "^1.0.3"
   },
   "devDependencies": {
-    "ansi-regex": "^3.0.0",
-    "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^2.1.0",
-    "gulp-clean-css": "^4.2.0",
-    "semantic-release": "^17.4.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "engines": {
-    "node": ">=6.10",
-    "npm": ">=5.4.0"
-  },
-  "release": {
-    "debug": false,
-    "branch": "master"
+    "gulp-clean-css": "^4.2.0"
   }
 }
