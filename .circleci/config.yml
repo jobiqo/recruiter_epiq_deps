@@ -7,7 +7,7 @@ version: 2.1
 jobs:
   build:
     machine:
-    image: ubuntu-2004:202201-02
+      image: ubuntu-2004:202201-02
     # Directory where steps will run. We use default "project" directory
     # to unify it for all jobiqo 8 projects
     working_directory: ~/project
