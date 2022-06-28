@@ -28,3 +28,10 @@ Each command needs to be run using recruiter-epiq-deps, this will link to the bi
 ## Dependencies
 
 This package bundles all the dependencies using bundledDependencies, this make for _npm install_ to run faster and insure that there are no side effects when running npm install since dependencies will only be changed when we explicitly update them here.
+
+## Publishing a new version
+
+For a new version to be available you have to manually run :
+
+`npm publish ./` and this will publish a new version of the package. Make sure to update package.json with the version you want to publish.
+You might have to first login to npm with `npm login` in order to publish the version. Only authorized users can publish new versions.
