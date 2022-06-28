@@ -6,10 +6,17 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
+    machine:
+    image: ubuntu-2004:202201-02
+    # Directory where steps will run. We use default "project" directory
+    # to unify it for all jobiqo 8 projects
+    working_directory: ~/project
+    # Environment variables for all commands for easier control
+    environment:
+      VERSION_DOCKER_COMPOSE: 1.23.2
+      VERSION_NVM: 0.34.0
+      VERSION_NODE: 12.18.3
+      VERSION_MKCERT: 1.4.1
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
