@@ -25,16 +25,16 @@ jobs:
       - restore_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
       - run:
-          name: "Install Node version"
+          name: Install Node version
           command: |
-          source /opt/circleci/.nvm/nvm.sh
-          nvm install ${VERSION_NODE}
-          # Make nvm available in next steps with desired node version
-          echo 'source /opt/circleci/.nvm/nvm.sh' >> $BASH_ENV
-          echo 'nvm use ${VERSION_NODE}' >> $BASH_ENV
+            source /opt/circleci/.nvm/nvm.sh
+            nvm install ${VERSION_NODE}
+            # Make nvm available in next steps with desired node version
+            echo 'source /opt/circleci/.nvm/nvm.sh' >> $BASH_ENV
+            echo 'nvm use ${VERSION_NODE}' >> $BASH_ENV
       - run:
-          name: "Install dependencies"
-          command: "npm install"
+          name: Install dependencies
+          command: npm install
       # save any changes to the cache
       - save_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
