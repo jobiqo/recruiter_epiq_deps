@@ -54,7 +54,6 @@
     "tiny-lr": "^1.0.3"
   },
   "devDependencies": {
-    "ansi-regex": "^3.0.0",
     "gulp-clean-css": "^4.2.0"
   }
 }
