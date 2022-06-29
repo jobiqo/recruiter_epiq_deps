@@ -1,6 +1,6 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "5.0.22",
+  "version": "5.0.24",
   "description": "Dependencies for the epiq theme in Recruiter distribution",
   "main": "index.js",
   "scripts": {
@@ -43,6 +43,7 @@
     "gulp-svgmin": "^2.2.0",
     "gulp-uglify": "^3.0.2",
     "kss": "^3.0.1",
+    "node-sass": "^7.0.1",
     "path": "^0.12.7",
     "stylelint": "^13.0.0",
     "stylelint-config-recommended": "^3.0.0",

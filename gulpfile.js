@@ -39,7 +39,7 @@ gulp.task("images", function () {
 
 gulp.task("sass", function () {
   var prefix, sass;
-  sass = require("gulp-sass");
+  sass = require("gulp-sass")(require("node-sass"));
   prefix = require("gulp-autoprefixer");
   return gulp
     .src(paths.sass)
@@ -81,7 +81,7 @@ gulp.task("livereload", function () {
   var livereload;
   livereload = require("gulp-livereload");
   livereload.listen();
-  gulp.watch(paths.livereload).on('all', function(event, path, stats) {
+  gulp.watch(paths.livereload).on("all", function (event, path, stats) {
     livereload.changed(path);
   });
 });
