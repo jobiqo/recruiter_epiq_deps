@@ -49,7 +49,7 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-sass-guidelines": "^7.1.0",
     "stylelint-scss": "^3.18.0",
-    "stylelint-selector-bem-pattern": "^2.1.0"
+    "stylelint-selector-bem-pattern": "^3.0.1"
   },
   "devDependencies": {
     "gulp-clean-css": "^4.2.0"
