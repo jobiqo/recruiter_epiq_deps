@@ -29,7 +29,7 @@
     "critical": "^4.0.1",
     "es6-promise": "^4.2.8",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^6.1.0",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-changed": "^4.0.0",
     "gulp-concat": "~2.6.1",
     "gulp-imagemin": "^7.0.0",
