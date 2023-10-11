@@ -33,7 +33,7 @@
     "gulp-changed": "^4.0.0",
     "gulp-concat": "~2.6.1",
     "gulp-imagemin": "^7.0.0",
-    "gulp-livereload": "^3.8.1",
+    "gulp-livereload": "^4.0.2",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^1.0.0",
     "gulp-rimraf": "^0.2.1",
