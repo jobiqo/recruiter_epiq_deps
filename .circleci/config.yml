@@ -15,7 +15,7 @@ jobs:
     environment:
       VERSION_DOCKER_COMPOSE: 1.23.2
       VERSION_NVM: 0.34.0
-      VERSION_NODE: 14.17.5
+      VERSION_NODE: 18.19.0
       VERSION_MKCERT: 1.4.1
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
