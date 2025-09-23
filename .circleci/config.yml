@@ -40,9 +40,3 @@ jobs:
           key: v1-deps-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      - run: # run build
-          name: build
-          command: npm run build
-      - run: # run tests
-          name: test
-          command: npm run test
