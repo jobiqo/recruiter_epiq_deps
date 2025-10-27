@@ -25,6 +25,11 @@ jobs:
       - restore_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
       - run:
+          name: Install Python and build tools
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y python3 make g++ build-essential
+      - run:
           name: Install Node version
           command: |
             source /opt/circleci/.nvm/nvm.sh
