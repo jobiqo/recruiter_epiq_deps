@@ -69,6 +69,16 @@ gulp.task("sass", function () {
     .pipe(gulp.dest("../../dist/css"));
 });
 
+import gulpStylelint from "gulp-stylelint-esm";
+
+gulp.task("lint-css", function () {
+  return gulp.src(paths.sass).pipe(
+    gulpStylelint({
+      reporters: [{ formatter: "string", console: true }],
+    })
+  );
+});
+
 import svgMin from "gulp-svgmin";
 import svgSprite from "gulp-svg-sprite";
 
