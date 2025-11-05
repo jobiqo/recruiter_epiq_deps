@@ -48,7 +48,10 @@ gulp.task("sass", function () {
   prefix = require("gulp-autoprefixer");
   return gulp
     .src(paths.sass)
-    .pipe(sass().on("error", sass.logError))
+    .pipe(sass({
+      quietDeps: true,
+      silenceDeprecations: ['legacy-js-api', 'import', 'slash-div', 'global-builtin', 'color-functions']
+    }).on("error", sass.logError))
     .pipe(prefix())
     .pipe(gulp.dest("../../dist/css"));
 });
