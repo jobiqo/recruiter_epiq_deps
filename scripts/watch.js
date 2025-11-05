@@ -1,5 +1,5 @@
-var spawn = require('child_process').spawn,
-  chalk = require('chalk');
+import { spawn } from 'node:child_process';
+import chalk from 'chalk';
 
 var options = {cwd: 'node_modules/recruiter_epiq_deps'};
 
