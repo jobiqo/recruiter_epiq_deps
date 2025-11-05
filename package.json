@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node scripts/build.js",
-    "stylelint": "stylelint 'node_modules/recruiter_epiq_deps/**/*.scss'",
+    "stylelint": "node scripts/stylelint.js",
     "images": "node scripts/images.js",
     "critical": "node scripts/critical.js --site ",
     "styleguide": "node scripts/styleguide.js",
