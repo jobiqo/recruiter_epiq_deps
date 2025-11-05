@@ -44,7 +44,7 @@ gulp.task("images", function () {
 
 gulp.task("sass", function () {
   var prefix, sass;
-  sass = require("gulp-sass")(require("node-sass"));
+  sass = require("gulp-sass")(require("sass"));
   prefix = require("gulp-autoprefixer");
   return gulp
     .src(paths.sass)
