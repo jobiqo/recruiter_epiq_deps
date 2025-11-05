@@ -1,6 +1,6 @@
-var exec = require("child_process").exec,
-  chalk = require("chalk"),
-  args = "";
+import { exec } from 'node:child_process';
+import chalk from 'chalk';
+var args = "";
 
 if (process.env.user && process.env.pass) {
   args += " --user " + process.env.user;

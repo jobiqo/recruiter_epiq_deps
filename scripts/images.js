@@ -1,6 +1,6 @@
-var exec = require('child_process').exec,
-  chalk = require('chalk'),
-  epiq_dir = '../../../../../../profiles/recruiter/themes/epiq';
+import { exec } from 'node:child_process';
+import chalk from 'chalk';
+var epiq_dir = '../../../../../../profiles/recruiter/themes/epiq';
 
 var cmd = 'cd node_modules/recruiter_epiq_deps && gulp images --epiq_dir ' + epiq_dir;
 

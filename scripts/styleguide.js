@@ -1,7 +1,7 @@
-var exec = require('child_process').exec,
-  chalk = require('chalk'),
-  epiq_dir = '../../../../../../profiles/recruiter/themes/epiq',
-  cmd = 'cd node_modules/recruiter_epiq_deps && gulp styleguide-kss --epiq_dir ' + epiq_dir;
+import { exec } from 'node:child_process';
+import chalk from 'chalk';
+var epiq_dir = '../../../../../../profiles/recruiter/themes/epiq';
+var cmd = 'cd node_modules/recruiter_epiq_deps && gulp styleguide-kss --epiq_dir ' + epiq_dir;
 
 console.log('Compiling styleguide - ' + chalk.yellow('gulp styleguide-kss'));
 exec(cmd, function (error, stdout, stderr) {
