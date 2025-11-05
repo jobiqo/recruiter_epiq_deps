@@ -16,7 +16,7 @@ const gulpConfigDefault = "../../gulpconfig.json";
 
 const paths = {
   sass: ["../../src/sass/**/*.scss"],
-  images: ["../../src/images/**/*"],
+  images: ["../../src/images/**/*.{png,jpg,jpeg,svg}"],
   livereload: ["../../dist/**/*"],
   docs: "docs",
   styleguide: {
@@ -112,7 +112,7 @@ gulp.task("watch", function () {
   return gulp.watch(paths.images, gulp.series("images"));
 });
 
-gulp.task("build", gulp.series("sass", "svg-icons"));
+gulp.task("build", gulp.series("images", "sass", "svg-icons"));
 
 gulp.task("compile-styleguide", function () {
   return gulp
