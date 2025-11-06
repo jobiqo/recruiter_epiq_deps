@@ -1,19 +1,22 @@
-/**
- * Gulp tasks to compile epiq theme and base themes.
- */
+import es6Promise from "es6-promise";
+import yargs from "yargs";
+import { hideBin } from 'yargs/helpers';
+import gulp from "gulp";
+import path from "path";
+import { fileURLToPath } from "url";
+es6Promise.polyfill();
 
-var args, epiq_path, gulp, path, paths, sass, gulpConfigDefault;
-require("es6-promise").polyfill();
-gulp = require("gulp");
-args = require("yargs").argv;
-isProduction = args.production === false;
-path = require("path");
-epiq_path = "../../../../../../profiles/recruiter/themes/epiq";
-gulpConfigDefault = "../../gulpconfig.json";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-paths = {
+const argv = yargs(hideBin(process.argv)).argv;
+const isProduction = argv.production === false;
+const epiq_path = "../../../../../../profiles/recruiter/themes/epiq";
+const gulpConfigDefault = "../../gulpconfig.json";
+
+const paths = {
   sass: ["../../src/sass/**/*.scss"],
-  images: ["../../src/images/**/*"],
+  images: ["../../src/images/**/*.{png,jpg,jpeg,svg}"],
   livereload: ["../../dist/**/*"],
   docs: "docs",
   styleguide: {
@@ -30,11 +33,11 @@ async function _red_LoadCritical() {
   return critical;
 }
 
+import changed from "gulp-changed";
+import imagemin from "gulp-imagemin";
+
 gulp.task("images", function () {
-  var changed, imagemin, stream;
-  changed = require("gulp-changed");
-  imagemin = require("gulp-imagemin");
-  stream = gulp
+  const stream = gulp
     .src(paths.images)
     .pipe(changed("../../dist/images"))
     .pipe(imagemin())
@@ -42,23 +45,33 @@ gulp.task("images", function () {
   return stream;
 });
 
+import gulpSass from "gulp-sass";
+import * as sassCompiler from "sass";
+const sass = gulpSass(sassCompiler);
+import autoprefixer from "gulp-autoprefixer";
+
 gulp.task("sass", function () {
-  var prefix, sass;
-  sass = require("gulp-sass")(require("sass"));
-  prefix = require("gulp-autoprefixer");
   return gulp
     .src(paths.sass)
-    .pipe(sass({
-      quietDeps: true,
-      silenceDeprecations: ['legacy-js-api', 'import', 'slash-div', 'global-builtin', 'color-functions']
-    }).on("error", sass.logError))
-    .pipe(prefix())
+    .pipe(
+      sass({
+        quietDeps: true,
+        silenceDeprecations: [
+          "legacy-js-api",
+          "import",
+          "slash-div",
+          "global-builtin",
+          "color-functions",
+        ],
+      }).on("error", sass.logError)
+    )
+    .pipe(autoprefixer())
     .pipe(gulp.dest("../../dist/css"));
 });
 
-gulp.task("lint-css", function () {
-  const gulpStylelint = require("gulp-stylelint");
+import gulpStylelint from "gulp-stylelint-esm";
 
+gulp.task("lint-css", function () {
   return gulp.src(paths.sass).pipe(
     gulpStylelint({
       reporters: [{ formatter: "string", console: true }],
@@ -66,10 +79,10 @@ gulp.task("lint-css", function () {
   );
 });
 
-gulp.task("svg-icons", function () {
-  const svgMin = require("gulp-svgmin");
-  const svgSprite = require("gulp-svg-sprite");
+import svgMin from "gulp-svgmin";
+import svgSprite from "gulp-svg-sprite";
 
+gulp.task("svg-icons", function () {
   return gulp
     .src(paths.svg)
     .pipe(svgMin())
@@ -85,9 +98,9 @@ gulp.task("svg-icons", function () {
     .pipe(gulp.dest("../../dist/icons"));
 });
 
+import livereload from "gulp-livereload";
+
 gulp.task("livereload", function () {
-  var livereload;
-  livereload = require("gulp-livereload");
   livereload.listen();
   gulp.watch(paths.livereload).on("all", function (event, path, stats) {
     livereload.changed(path);
@@ -101,8 +114,6 @@ gulp.task("watch", function () {
 
 gulp.task("build", gulp.series("images", "sass", "svg-icons"));
 
-sass = require("gulp-sass");
-
 gulp.task("compile-styleguide", function () {
   return gulp
     .src("../../styleguide/sass/*.scss")
@@ -110,13 +121,12 @@ gulp.task("compile-styleguide", function () {
     .pipe(gulp.dest("../../styleguide/docs/css"));
 });
 
+import kss from "kss";
+
 gulp.task("kss", function () {
-  var kss = require("kss");
   return kss({
     source: paths.styleguide.source,
     destination: paths.styleguide.destination,
-    // builder: config.server.styleguide.template,
-    // homepage: config.server.styleguide.homepage,
     css: "css/styles.css",
   });
 });
@@ -125,154 +135,157 @@ gulp.task("styleguide-kss", gulp.series("compile-styleguide", "kss"));
 
 gulp.task("default", gulp.parallel("build", "watch"));
 
+import rimraf from "gulp-rimraf";
+
 gulp.task("clean", function () {
-  var rimraf;
-  rimraf = require("gulp-rimraf");
-  return gulp
-    .src(["dist"], {
-      read: false,
-    })
-    .pipe(rimraf());
+  return gulp.src(["dist"], { read: false }).pipe(rimraf());
 });
 
+import cleanCSS from "gulp-clean-css";
+import rename from "gulp-rename";
+
 gulp.task("minify-css", function () {
-  var cssmin, rename;
-  cleanCSS = require("gulp-clean-css");
-  rename = require("gulp-rename");
-  gulp
+  return gulp
     .src("../../dist/css/*.css")
     .pipe(cleanCSS())
-    .pipe(
-      rename({
-        suffix: ".min",
-      })
-    )
+    .pipe(rename({ suffix: ".min" }))
     .pipe(gulp.dest("../../dist/css/min"));
 });
 
-gulp.task("critical-front", async function (cb) {
-  _red_LoadCritical().then(critical => {
-    path = require("path"),
-      coreGulpConfig = require(`${epiq_path}/gulpconfig.json`),
-      gulpconfig = require(`${gulpConfigDefault}`),
-      urls = {
-        site: gulpconfig.site,
-        css_file: gulpconfig.css_file,
-      },
-      generic_force_selectors = coreGulpConfig.generic.force_include.concat(
-        gulpconfig.generic.force_include
-      ),
-      front_force_selectors = coreGulpConfig.front.force_include.concat(
-        gulpconfig.front.force_include
-      ),
-      includePath = path.join(
-        __dirname,
-        "../../dist/css/min/critical-front.min.css"
-      );
-    return critical.generate({
-      base: "../../dist",
-      src: urls.site,
-      css: "../../dist/css/" + urls.css_file,
-      target: includePath,
-      // minify: true,
-      width: 2000,
-      height: 1024,
-      //timeout: 120000,
-      include: generic_force_selectors.concat(front_force_selectors),
-      // user: process.env.user ? process.env.user : null,
-      // pass: process.env.pass ? process.env.pass : null,
-    });
+gulp.task("critical-front", async function () {
+  const critical = await _red_LoadCritical();
+
+  const coreGulpConfig = await import(`${epiq_path}/gulpconfig.json`, {
+    assert: { type: "json" },
+  });
+  const gulpconfig = await import(`${gulpConfigDefault}`, {
+    assert: { type: "json" },
+  });
+
+  const urls = {
+    site: gulpconfig.site,
+    css_file: gulpconfig.css_file,
+  };
+
+  const generic_force_selectors = coreGulpConfig.generic.force_include.concat(
+    gulpconfig.generic.force_include
+  );
+  const front_force_selectors = coreGulpConfig.front.force_include.concat(
+    gulpconfig.front.force_include
+  );
+
+  const includePath = path.join(
+    __dirname,
+    "../../dist/css/min/critical-front.min.css"
+  );
+
+  return critical.generate({
+    base: "../../dist",
+    src: urls.site,
+    css: "../../dist/css/" + urls.css_file,
+    target: includePath,
+    width: 2000,
+    height: 1024,
+    include: generic_force_selectors.concat(front_force_selectors),
   });
 });
 
-gulp.task("critical", async function (cb) {
-  _red_LoadCritical().then(critical => {
-    path = require("path"),
-      coreGulpConfig = require(`${epiq_path}/gulpconfig.json`),
-      gulpconfig = require(`${gulpConfigDefault}`),
-      urls = {
-        site: gulpconfig.site + "/jobs",
-        css_file: gulpconfig.css_file,
-      },
-      generic_force_selectors = coreGulpConfig.generic.force_include.concat(
-        gulpconfig.generic.force_include
-      ),
-      jobs_force_selectors = coreGulpConfig.jobs.force_include.concat(
-        gulpconfig.jobs.force_include
-      ),
-      includePath = path.join(__dirname, "../../dist/css/min/critical.min.css");
-    return critical.generate({
-      base: "../../dist",
-      src: urls.site,
-      css: "../../dist/css/" + urls.css_file,
-      target: includePath,
-      // minify: true,
-      width: 2000,
-      height: 1024,
-      // timeout: 120000,
-      include: generic_force_selectors.concat(jobs_force_selectors),
-      // user: process.env.user ? process.env.user : null,
-      // pass: process.env.pass ? process.env.pass : null,
-    });
+gulp.task("critical", async function () {
+  const critical = await _red_LoadCritical();
+  const coreGulpConfig = await import(`${epiq_path}/gulpconfig.json`, {
+    assert: { type: "json" },
+  });
+  const gulpconfig = await import(`${gulpConfigDefault}`, {
+    assert: { type: "json" },
+  });
+
+  const urls = {
+    site: gulpconfig.site + "/jobs",
+    css_file: gulpconfig.css_file,
+  };
+
+  const generic_force_selectors = coreGulpConfig.generic.force_include.concat(
+    gulpconfig.generic.force_include
+  );
+  const jobs_force_selectors = coreGulpConfig.jobs.force_include.concat(
+    gulpconfig.jobs.force_include
+  );
+
+  const includePath = path.join(__dirname, "../../dist/css/min/critical.min.css");
+
+  return critical.generate({
+    base: "../../dist",
+    src: urls.site,
+    css: "../../dist/css/" + urls.css_file,
+    target: includePath,
+    width: 2000,
+    height: 1024,
+    include: generic_force_selectors.concat(jobs_force_selectors),
   });
 });
 
-gulp.task("critical-job", async function (cb) {
-  _red_LoadCritical().then(critical => {
-    path = require("path"),
-      coreGulpConfig = require(`${epiq_path}/gulpconfig.json`),
-      gulpconfig = require(`${gulpConfigDefault}`),
-      urls = {
-        site: gulpconfig.site + "/critical-css/job-per-template",
-        css_file: gulpconfig.css_file,
-      },
-      generic_force_selectors = coreGulpConfig.generic.force_include.concat(
-        gulpconfig.generic.force_include
-      ),
-      jobs_force_selectors = coreGulpConfig.job.force_include.concat(
-        gulpconfig.job.force_include
-      ),
-      includePath = path.join(
-        __dirname,
-        "../../dist/css/min/critical-job.min.css"
-      );
-    return critical.generate({
-      base: "../../dist",
-      src: urls.site,
-      css: "../../dist/css/" + urls.css_file,
-      target: includePath,
-      // minify: true,
-      width: 2000,
-      height: 1024,
-      // timeout: 120000,
-      include: generic_force_selectors.concat(jobs_force_selectors),
-      // user: process.env.user ? process.env.user : null,
-      // pass: process.env.pass ? process.env.pass : null,
-    });
+gulp.task("critical-job", async function () {
+  const critical = await _red_LoadCritical();
+  const coreGulpConfig = await import(`${epiq_path}/gulpconfig.json`, {
+    assert: { type: "json" },
+  });
+  const gulpconfig = await import(`${gulpConfigDefault}`, {
+    assert: { type: "json" },
+  });
+
+  const urls = {
+    site: gulpconfig.site + "/critical-css/job-per-template",
+    css_file: gulpconfig.css_file,
+  };
+
+  const generic_force_selectors = coreGulpConfig.generic.force_include.concat(
+    gulpconfig.generic.force_include
+  );
+  const jobs_force_selectors = coreGulpConfig.job.force_include.concat(
+    gulpconfig.job.force_include
+  );
+
+  const includePath = path.join(
+    __dirname,
+    "../../dist/css/min/critical-job.min.css"
+  );
+
+  return critical.generate({
+    base: "../../dist",
+    src: urls.site,
+    css: "../../dist/css/" + urls.css_file,
+    target: includePath,
+    width: 2000,
+    height: 1024,
+    include: generic_force_selectors.concat(jobs_force_selectors),
   });
 });
+
+import replace from "gulp-replace";
 
 gulp.task(
   "critical-fix-fonts",
   gulp.series(
     gulp.parallel("critical", "critical-front", "critical-job"),
-    function (cb) {
-      var replace = require("gulp-replace"),
-        path = require("path"),
-        gulpconfig = require(`${gulpConfigDefault}`);
-      return gulp
-        .src([
-          path.join(__dirname, "../../dist/css/min/critical.min.css"),
-          path.join(__dirname, "../../dist/css/min/critical-front.min.css"),
-          path.join(__dirname, "../../dist/css/min/critical-job.min.css"),
-        ])
-        .pipe(
-          replace(
-            "../../fonts",
-            "/" + gulpconfig.theme_directory + "/dist/fonts"
+    function () {
+      const gulpconfigPromise = import(`${gulpConfigDefault}`, {
+        assert: { type: "json" },
+      });
+      return gulpconfigPromise.then((gulpconfig) => {
+        return gulp
+          .src([
+            path.join(__dirname, "../../dist/css/min/critical.min.css"),
+            path.join(__dirname, "../../dist/css/min/critical-front.min.css"),
+            path.join(__dirname, "../../dist/css/min/critical-job.min.css"),
+          ])
+          .pipe(
+            replace(
+              "../../fonts",
+              "/" + gulpconfig.theme_directory + "/dist/fonts"
+            )
           )
-        )
-        .pipe(gulp.dest(path.join(__dirname, "../../dist/css/min")));
+          .pipe(gulp.dest(path.join(__dirname, "../../dist/css/min")));
+      });
     }
   )
 );

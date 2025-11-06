@@ -3,7 +3,9 @@
     "stylelint-selector-bem-pattern",
     "stylelint-scss"
   ],
-  "extends": "stylelint-config-sass-guidelines",
+  "extends": [
+    "stylelint-config-sass-guidelines"
+  ],
   "rules": {
     "unit-allowed-list": [
       "px",
