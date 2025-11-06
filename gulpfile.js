@@ -81,10 +81,41 @@ gulp.task("lint-css", function () {
 
 import svgMin from "gulp-svgmin";
 import svgSprite from "gulp-svg-sprite";
+import fs from "fs";
+import { Readable } from "stream";
+
+// Helper function to check if directory exists.
+function directoryExists(path) {
+  try {
+    path = path.replace(/\/\*\.svg$/, '');
+    return fs.existsSync(path) && fs.statSync(path).isDirectory();
+  }
+  catch (err) {
+    return false;
+  }
+}
+
+// Helper function to return an empty stream.
+function emptyStream() {
+  const stream = new Readable({ objectMode: true });
+  stream._read = () => {
+    // Immediately signals end of stream
+    stream.push(null);
+  };
+  return stream;
+}
 
 gulp.task("svg-icons", function () {
+  // Filter olny existing directories from the svg icons directories.
+  const svgDirs = paths.svg.filter(directoryExists);
+
+  // If none of the directories exist, return empty stream to skip task.
+  if (svgDirs.length === 0) {
+    return emptyStream();
+  }
+
   return gulp
-    .src(paths.svg)
+    .src(svgDirs)
     .pipe(svgMin())
     .pipe(
       svgSprite({
