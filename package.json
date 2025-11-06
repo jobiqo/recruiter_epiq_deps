@@ -1,6 +1,6 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "5.0.29",
+  "version": "5.0.30",
   "description": "Dependencies for the epiq theme in Recruiter distribution",
   "main": "index.js",
   "scripts": {
@@ -31,6 +31,7 @@
     "gulp": "^5.0.1",
     "gulp-autoprefixer": "^10.0.0",
     "gulp-changed": "^5.0.4",
+    "gulp-clean-css": "^4.3.0",
     "gulp-concat": "~2.6.1",
     "gulp-imagemin": "^9.1.0",
     "gulp-livereload": "^4.0.2",
@@ -51,8 +52,5 @@
     "stylelint-config-sass-guidelines": "^12.1.0",
     "stylelint-scss": "^6.12.1",
     "stylelint-selector-bem-pattern": "^4.0.1"
-  },
-  "devDependencies": {
-    "gulp-clean-css": "^4.3.0"
   }
 }
