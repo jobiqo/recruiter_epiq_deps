@@ -6,6 +6,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 es6Promise.polyfill();
 
+import postcss from "gulp-postcss";
+import prefixer from "postcss-prefix-selector";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -66,6 +69,42 @@ gulp.task("sass", function () {
       }).on("error", sass.logError)
     )
     .pipe(autoprefixer())
+    .pipe(gulp.dest("../../dist/css"));
+});
+
+gulp.task("ckeditor-styles", function () {
+  return gulp
+    // pick the final compiled CSS file(s)
+    .src("../../dist/css/*.css", {
+      ignore: [
+        "../../dist/css/*.min.css",
+        "../../dist/css/ckeditor.styles.css",
+      ],
+    })
+    .pipe(
+      postcss([
+        prefixer({
+          prefix: ".ck-content",
+          transform(prefix, selector, prefixedSelector) {
+            // Avoid double-prefixing.
+            if (selector.startsWith(".ck-content")) {
+              return selector;
+            }
+            // If selector is body or html, replace it with the prefix only.
+            if (selector === "body" || selector === "html") {
+              return prefix;
+            }
+
+            return prefixedSelector;
+          },
+        }),
+      ])
+    )
+    .pipe(
+      rename({
+        basename: "ckeditor.styles",
+      })
+    )
     .pipe(gulp.dest("../../dist/css"));
 });
 
@@ -143,7 +182,7 @@ gulp.task("watch", function () {
   return gulp.watch(paths.images, gulp.series("images"));
 });
 
-gulp.task("build", gulp.series("images", "sass", "svg-icons"));
+gulp.task("build", gulp.series("images", "sass", "ckeditor-styles", "svg-icons"));
 
 gulp.task("compile-styleguide", function () {
   return gulp
