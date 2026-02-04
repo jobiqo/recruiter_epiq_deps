@@ -226,23 +226,26 @@ gulp.task("critical-front", async function () {
   const critical = await _red_LoadCritical();
 
   const coreGulpConfig = await import(`${epiq_path}/gulpconfig.json`, {
-    assert: { type: "json" },
+    with: { type: "json" },
   });
   const gulpconfig = await import(`${gulpConfigDefault}`, {
-    assert: { type: "json" },
+    with: { type: "json" },
   });
 
+
   const urls = {
-    site: gulpconfig.site,
-    css_file: gulpconfig.css_file,
+    site: gulpconfig.default?.site,
+    css_file: gulpconfig.default?.css_file,
   };
 
-  const generic_force_selectors = coreGulpConfig.generic.force_include.concat(
-    gulpconfig.generic.force_include
-  );
-  const front_force_selectors = coreGulpConfig.front.force_include.concat(
-    gulpconfig.front.force_include
-  );
+  const generic_force_selectors = [
+    ...(coreGulpConfig.default?.generic?.force_include || []),
+    ...(gulpconfig.default?.generic?.force_include || [])
+  ];
+  const front_force_selectors = [
+    ...(coreGulpConfig.default?.front?.force_include || []),
+    ...(gulpconfig.default?.front?.force_include || [])
+  ];
 
   const includePath = path.join(
     __dirname,
@@ -263,23 +266,25 @@ gulp.task("critical-front", async function () {
 gulp.task("critical", async function () {
   const critical = await _red_LoadCritical();
   const coreGulpConfig = await import(`${epiq_path}/gulpconfig.json`, {
-    assert: { type: "json" },
+    with: { type: "json" },
   });
   const gulpconfig = await import(`${gulpConfigDefault}`, {
-    assert: { type: "json" },
+    with: { type: "json" },
   });
 
   const urls = {
-    site: gulpconfig.site + "/jobs",
-    css_file: gulpconfig.css_file,
+    site: gulpconfig.default?.site + "/jobs",
+    css_file: gulpconfig.default?.css_file,
   };
 
-  const generic_force_selectors = coreGulpConfig.generic.force_include.concat(
-    gulpconfig.generic.force_include
-  );
-  const jobs_force_selectors = coreGulpConfig.jobs.force_include.concat(
-    gulpconfig.jobs.force_include
-  );
+  const generic_force_selectors = [
+    ...(coreGulpConfig.default?.generic?.force_include || []),
+    ...(gulpconfig.default?.generic?.force_include || [])
+  ];
+  const jobs_force_selectors = [
+    ...(coreGulpConfig.default?.jobs?.force_include || []),
+    ...(gulpconfig.default?.jobs?.force_include || [])
+  ];
 
   const includePath = path.join(__dirname, "../../dist/css/min/critical.min.css");
 
@@ -297,23 +302,25 @@ gulp.task("critical", async function () {
 gulp.task("critical-job", async function () {
   const critical = await _red_LoadCritical();
   const coreGulpConfig = await import(`${epiq_path}/gulpconfig.json`, {
-    assert: { type: "json" },
+    with: { type: "json" },
   });
   const gulpconfig = await import(`${gulpConfigDefault}`, {
-    assert: { type: "json" },
+    with: { type: "json" },
   });
 
   const urls = {
-    site: gulpconfig.site + "/critical-css/job-per-template",
-    css_file: gulpconfig.css_file,
+    site: gulpconfig.default?.site + "/critical-css/job-per-template",
+    css_file: gulpconfig.default?.css_file,
   };
 
-  const generic_force_selectors = coreGulpConfig.generic.force_include.concat(
-    gulpconfig.generic.force_include
-  );
-  const jobs_force_selectors = coreGulpConfig.job.force_include.concat(
-    gulpconfig.job.force_include
-  );
+  const generic_force_selectors = [
+    ...(coreGulpConfig.default?.generic?.force_include || []),
+    ...(gulpconfig.default?.generic?.force_include || [])
+  ];
+  const jobs_force_selectors = [
+    ...(coreGulpConfig.default?.jobs?.force_include || []),
+    ...(gulpconfig.default?.jobs?.force_include || [])
+  ];
 
   const includePath = path.join(
     __dirname,
@@ -339,8 +346,9 @@ gulp.task(
     gulp.parallel("critical", "critical-front", "critical-job"),
     function () {
       const gulpconfigPromise = import(`${gulpConfigDefault}`, {
-        assert: { type: "json" },
+        with: { type: "json" },
       });
+
       return gulpconfigPromise.then((gulpconfig) => {
         return gulp
           .src([
