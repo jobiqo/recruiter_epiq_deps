@@ -1,6 +1,6 @@
 {
   "name": "recruiter_epiq_deps",
-  "version": "5.0.32",
+  "version": "5.0.33",
   "description": "Dependencies for the epiq theme in Recruiter distribution",
   "main": "index.js",
   "scripts": {
