@@ -8,7 +8,7 @@ es6Promise.polyfill();
 
 import postcss from "gulp-postcss";
 import prefixer from "postcss-prefix-selector";
-import header from "gulp-header";
+import footer from "gulp-footer";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -108,8 +108,8 @@ gulp.task("ckeditor-styles", function () {
     )
     // Make sure that ckeditor content is using border-box sizing.
     .pipe(
-      header(
-        `.ck-content {\n  box-sizing: border-box;\n}\n\n`
+      footer(
+        `\n.ck-content {\n  box-sizing: border-box;\n}\n`
       )
     )
     .pipe(
