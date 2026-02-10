@@ -8,6 +8,7 @@ es6Promise.polyfill();
 
 import postcss from "gulp-postcss";
 import prefixer from "postcss-prefix-selector";
+import footer from "gulp-footer";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -90,15 +91,26 @@ gulp.task("ckeditor-styles", function () {
             if (selector.startsWith(".ck-content")) {
               return selector;
             }
-            // If selector is body or html, replace it with the prefix only.
-            if (selector === "body" || selector === "html") {
+            // If selector is body replace it with the prefix only.
+            if (selector === "body") {
               return prefix;
+            }
+            // If selector is html replace it with element
+            // that contains the content of the editor.
+            else if (selector === "html") {
+              return ".ck-editor__main";
             }
 
             return prefixedSelector;
           },
         }),
       ])
+    )
+    // Make sure that ckeditor content is using border-box sizing.
+    .pipe(
+      footer(
+        `\n.ck-content {\n  box-sizing: border-box;\n}\n`
+      )
     )
     .pipe(
       rename({
