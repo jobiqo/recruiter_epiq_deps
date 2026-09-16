@@ -38,7 +38,7 @@ async function _red_LoadCritical() {
 }
 
 import changed from "gulp-changed";
-import imagemin from "gulp-imagemin";
+import imagemin from "@localnerve/gulp-imagemin";
 
 gulp.task("images", function () {
   const stream = gulp
