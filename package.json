@@ -57,7 +57,7 @@
     "stylelint-selector-bem-pattern": "^4.0.1"
   },
   "overrides": {
-    "handlebars": "^4.7.9",
+    "handlebars": "^4.7.10",
     "@xmldom/xmldom": "^0.9.10",
     "gulp-svgmin": {
       "svgo": "^2.8.4"
